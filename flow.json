@@ -1,1 +1,2528 @@
-[{"id":"8e58ee44.a4437","type":"tab","label":"Light Switches","disabled":false,"info":""},{"id":"b8e2ec17.d1eb2","type":"tab","label":"Timers","disabled":false,"info":""},{"id":"434c5286.7d68a4","type":"tab","label":"Storage Cupboard Light","disabled":false,"info":""},{"id":"3bad2ed8.06947a","type":"tab","label":"Bathroom fans","disabled":false,"info":""},{"id":"b44fe0e7.09adb8","type":"tab","label":"Blinds Controls","disabled":false,"info":""},{"id":"ece5e39f.8a0c58","type":"tab","label":"Magic Cube","disabled":false,"info":""},{"id":"9b41e9d4.08d7b8","type":"subflow","name":"Front door toggled?","info":"","category":"home_assistant","in":[],"out":[{"x":760,"y":340,"wires":[{"id":"288912f4.f00d06","port":0}]}],"env":[]},{"id":"e88800ac.be03b8","type":"subflow","name":"Anybody home?","info":"","category":"","in":[{"x":40,"y":100,"wires":[{"id":"e88713fd.b028"},{"id":"3481bf57.73cc08"}]}],"out":[{"x":440,"y":140,"wires":[{"id":"e88713fd.b028","port":0},{"id":"3481bf57.73cc08","port":0}]}],"env":[],"color":"#DDAA99","status":{"x":440,"y":80,"wires":[{"id":"e88713fd.b028","port":0},{"id":"3481bf57.73cc08","port":0},{"id":"e88713fd.b028","port":1},{"id":"3481bf57.73cc08","port":1}]}},{"id":"52ab68a6.c19f38","type":"subflow","name":"Front door toggled? (2)","info":"","category":"home_assistant","in":[],"out":[{"x":760,"y":340,"wires":[{"id":"531febf.2a4f494","port":0}]}],"env":[]},{"id":"75d24b0f.a8f96c","type":"subflow","name":"Anybody home? (2)","info":"","category":"","in":[{"x":40,"y":100,"wires":[{"id":"4eb71170.236d78"},{"id":"48e0a214.d406fc"}]}],"out":[{"x":440,"y":140,"wires":[{"id":"4eb71170.236d78","port":0},{"id":"48e0a214.d406fc","port":0}]}],"env":[],"color":"#DDAA99","status":{"x":440,"y":80,"wires":[{"id":"4eb71170.236d78","port":0},{"id":"48e0a214.d406fc","port":0},{"id":"4eb71170.236d78","port":1},{"id":"48e0a214.d406fc","port":1}]}},{"id":"9cbaa593.a5001","type":"mqtt-broker","z":"","name":"Mosquitto","broker":"mosquitto.mosquitto.svc.cluster.local","port":"1883","tls":"","clientid":"","usetls":false,"compatmode":false,"keepalive":"60","cleansession":true,"birthTopic":"node-red","birthQos":"1","birthRetain":"true","birthPayload":"{\"connected\" : true}","closeTopic":"node-red","closeQos":"1","closeRetain":"true","closePayload":"{\"connected\" : false}","willTopic":"node-red","willQos":"1","willRetain":"true","willPayload":"{\"connected\" : false}"},{"id":"6dd794ce.66414c","type":"server","z":"","name":"Home Assistant","legacy":false,"addon":false,"rejectUnauthorizedCerts":true,"ha_boolean":"y|yes|true|on|home|open","connectionDelay":true,"cacheJson":true},{"id":"8c84c35d.2d8c08","type":"server-state-changed","z":"9b41e9d4.08d7b8","name":"Entrance door open","server":"","entityidfilter":"binary_sensor.entrance_contact","entityidfiltertype":"exact","outputinitially":false,"state_type":"str","haltifstate":"on","halt_if_type":"str","halt_if_compare":"is","outputs":2,"output_only_on_state_change":true,"x":190,"y":340,"wires":[["c3ff21f5.f8eb58"],[]]},{"id":"c3ff21f5.f8eb58","type":"delay","z":"9b41e9d4.08d7b8","name":"","pauseType":"delay","timeout":"3","timeoutUnits":"seconds","rate":"1","nbRateUnits":"1","rateUnits":"second","randomFirst":"1","randomLast":"5","randomUnits":"seconds","drop":false,"x":380,"y":340,"wires":[["288912f4.f00d06"]]},{"id":"288912f4.f00d06","type":"ha-wait-until","z":"9b41e9d4.08d7b8","name":"Wait until closed","server":"","outputs":2,"entityId":"binary_sensor.entrance_contact","property":"state","comparator":"is","value":"off","valueType":"str","timeout":"60","timeoutUnits":"seconds","entityLocation":"","entityLocationType":"none","checkCurrentState":true,"x":560,"y":340,"wires":[[],[]]},{"id":"e88713fd.b028","type":"api-current-state","z":"e88800ac.be03b8","name":"Toria is home?","server":"","version":1,"outputs":2,"halt_if":"home","halt_if_type":"str","halt_if_compare":"is","override_topic":false,"entity_id":"person.toria","state_type":"str","state_location":"payload","override_payload":"msg","entity_location":"data","override_data":"msg","blockInputOverrides":false,"x":200,"y":80,"wires":[[],[]]},{"id":"3481bf57.73cc08","type":"api-current-state","z":"e88800ac.be03b8","name":"Luke is home?","server":"","version":1,"outputs":2,"halt_if":"home","halt_if_type":"str","halt_if_compare":"is","override_topic":false,"entity_id":"person.luke","state_type":"str","state_location":"payload","override_payload":"msg","entity_location":"data","override_data":"msg","blockInputOverrides":false,"x":200,"y":140,"wires":[[],[]]},{"id":"b2788107.329e48","type":"mqtt in","z":"8e58ee44.a4437","name":"Events","topic":"zigbee2mqtt/#","qos":"2","datatype":"json","broker":"9cbaa593.a5001","x":110,"y":240,"wires":[["1abeb468.711e1c","e7951edb.8c4a3","f99bb183.78d538"]]},{"id":"1abeb468.711e1c","type":"function","z":"8e58ee44.a4437","name":"Save current value","func":"global.set(msg.topic, msg.payload)\n\nreturn [];","outputs":0,"noerr":0,"x":430,"y":80,"wires":[]},{"id":"e7951edb.8c4a3","type":"switch","z":"8e58ee44.a4437","name":"Control Switches","property":"topic","propertyType":"msg","rules":[{"t":"cont","v":"office","vt":"str"},{"t":"cont","v":"hallway","vt":"str"},{"t":"cont","v":"entrance","vt":"str"},{"t":"cont","v":"ensuite","vt":"str"},{"t":"cont","v":"bathroom","vt":"str"},{"t":"cont","v":"bedroom","vt":"str"},{"t":"cont","v":"kitchen","vt":"str"},{"t":"cont","v":"lounge","vt":"str"}],"checkall":"false","repair":false,"outputs":8,"x":430,"y":240,"wires":[["e5ee588a.13ef3"],["5aaecfd2.ca6b18"],["aa7d38a0.9f732"],["1a937e8.28d3302"],["87e19edc.95bef"],["79cd220d.d0760c"],["8ca93c39.7a3c3"],["8adf22b8.293f6"]]},{"id":"417d0c86.01c60c","type":"switch","z":"8e58ee44.a4437","name":"Switch","property":"payload.action","propertyType":"msg","rules":[{"t":"eq","v":"on-press","vt":"str"},{"t":"eq","v":"off-press","vt":"str"},{"t":"eq","v":"up-press","vt":"str"},{"t":"eq","v":"down-press","vt":"str"},{"t":"eq","v":"off-hold","vt":"str"},{"t":"eq","v":"off-hold-release","vt":"str"},{"t":"eq","v":"on-hold","vt":"str"},{"t":"eq","v":"on-hold-release","vt":"str"}],"checkall":"true","repair":false,"outputs":8,"x":890,"y":240,"wires":[["eec7cc54.6646a"],["cded7c0f.31c42"],["21ab7b50.f228fc"],["21ab7b50.f228fc"],[],["74ddc50e.e028fc"],[],["e3b8fa3e.4e4508"]]},{"id":"eec7cc54.6646a","type":"change","z":"8e58ee44.a4437","name":"Turn On","rules":[{"t":"set","p":"payload","pt":"msg","to":"{\"state\":\"ON\",\"transition\":\"0.2\"}","tot":"json"}],"action":"","property":"","from":"","to":"","reg":false,"x":1160,"y":180,"wires":[["2da57b46.782dc4"]]},{"id":"e5ee588a.13ef3","type":"change","z":"8e58ee44.a4437","name":"Office","rules":[{"t":"set","p":"topic","pt":"msg","to":"zigbee2mqtt/office/set","tot":"str"}],"action":"","property":"","from":"","to":"","reg":false,"x":670,"y":100,"wires":[["417d0c86.01c60c"]]},{"id":"cded7c0f.31c42","type":"change","z":"8e58ee44.a4437","name":"Turn Off","rules":[{"t":"set","p":"payload","pt":"msg","to":"{\"state\":\"OFF\",\"transition\":\"0.2\"}","tot":"json"}],"action":"","property":"","from":"","to":"","reg":false,"x":1160,"y":220,"wires":[["2da57b46.782dc4"]]},{"id":"830064fc.dc1e","type":"mqtt out","z":"8e58ee44.a4437","name":"Perform Action","topic":"","qos":"1","retain":"false","broker":"9cbaa593.a5001","x":1980,"y":280,"wires":[]},{"id":"2da57b46.782dc4","type":"function","z":"8e58ee44.a4437","name":"Not already on or off?","func":"const currentValue = global.get(msg.topic.replace(/\\/set$/, ''))\n\nconst { state } = currentValue || {}\n\nif (state === msg.payload.state) return []\n\nelse return msg;","outputs":1,"noerr":0,"x":1500,"y":200,"wires":[["830064fc.dc1e"]]},{"id":"aa7d38a0.9f732","type":"change","z":"8e58ee44.a4437","name":"Entrance","rules":[{"t":"set","p":"topic","pt":"msg","to":"zigbee2mqtt/entrance/set","tot":"str"}],"action":"","property":"","from":"","to":"","reg":false,"x":680,"y":180,"wires":[["417d0c86.01c60c"]]},{"id":"21ab7b50.f228fc","type":"change","z":"8e58ee44.a4437","name":"Press Up / Down","rules":[{"t":"set","p":"tmp","pt":"flow","to":"payload","tot":"msg"},{"t":"set","p":"payload","pt":"msg","to":"{}","tot":"json"},{"t":"set","p":"payload.state","pt":"msg","to":"ON","tot":"str"},{"t":"set","p":"payload.brightness","pt":"msg","to":"tmp.brightness","tot":"flow"},{"t":"set","p":"payload.transition","pt":"msg","to":"0.2","tot":"str"}],"action":"","property":"","from":"","to":"","reg":false,"x":1190,"y":280,"wires":[["830064fc.dc1e"]]},{"id":"1a937e8.28d3302","type":"change","z":"8e58ee44.a4437","name":"En-Suite","rules":[{"t":"set","p":"topic","pt":"msg","to":"zigbee2mqtt/ensuite_lights/set","tot":"str"}],"action":"","property":"","from":"","to":"","reg":false,"x":680,"y":220,"wires":[["417d0c86.01c60c"]]},{"id":"87e19edc.95bef","type":"change","z":"8e58ee44.a4437","name":"Bathroom","rules":[{"t":"set","p":"topic","pt":"msg","to":"zigbee2mqtt/bathroom_lights/set","tot":"str"}],"action":"","property":"","from":"","to":"","reg":false,"x":680,"y":260,"wires":[["417d0c86.01c60c"]]},{"id":"79cd220d.d0760c","type":"change","z":"8e58ee44.a4437","name":"Bedroom","rules":[{"t":"set","p":"topic","pt":"msg","to":"zigbee2mqtt/bedroom/set","tot":"str"}],"action":"","property":"","from":"","to":"","reg":false,"x":680,"y":300,"wires":[["417d0c86.01c60c"]]},{"id":"8ca93c39.7a3c3","type":"change","z":"8e58ee44.a4437","name":"Kitchen","rules":[{"t":"set","p":"topic","pt":"msg","to":"zigbee2mqtt/kitchen_lights/set","tot":"str"}],"action":"","property":"","from":"","to":"","reg":false,"x":680,"y":340,"wires":[["417d0c86.01c60c"]]},{"id":"8adf22b8.293f6","type":"change","z":"8e58ee44.a4437","name":"Lounge","rules":[{"t":"set","p":"topic","pt":"msg","to":"zigbee2mqtt/lounge_lights/set","tot":"str"}],"action":"","property":"","from":"","to":"","reg":false,"x":680,"y":380,"wires":[["417d0c86.01c60c"]]},{"id":"f99bb183.78d538","type":"switch","z":"8e58ee44.a4437","name":"Door Contacts","property":"topic","propertyType":"msg","rules":[{"t":"cont","v":"ensuite","vt":"str"},{"t":"cont","v":"bathroom","vt":"str"},{"t":"cont","v":"entrance","vt":"str"}],"checkall":"true","repair":false,"outputs":3,"x":440,"y":480,"wires":[["702461ba.d464c8"],["53b8b320.fc5e14"],["fdc5de40.6fb5d8"]]},{"id":"ae30d519.ddfe68","type":"switch","z":"8e58ee44.a4437","name":"Door opened?","property":"payload.contact","propertyType":"msg","rules":[{"t":"false"}],"checkall":"true","repair":false,"outputs":1,"x":920,"y":460,"wires":[["eec7cc54.6646a"]]},{"id":"702461ba.d464c8","type":"change","z":"8e58ee44.a4437","name":"En-Suite","rules":[{"t":"set","p":"topic","pt":"msg","to":"zigbee2mqtt/ensuite_lights/set","tot":"str"}],"action":"","property":"","from":"","to":"","reg":false,"x":680,"y":440,"wires":[["ae30d519.ddfe68"]]},{"id":"53b8b320.fc5e14","type":"change","z":"8e58ee44.a4437","name":"Bathroom","rules":[{"t":"set","p":"topic","pt":"msg","to":"zigbee2mqtt/bathroom_lights/set","tot":"str"}],"action":"","property":"","from":"","to":"","reg":false,"x":680,"y":480,"wires":[["ae30d519.ddfe68"]]},{"id":"fdc5de40.6fb5d8","type":"change","z":"8e58ee44.a4437","name":"Entrance","rules":[{"t":"set","p":"topic","pt":"msg","to":"zigbee2mqtt/entrance/set","tot":"str"}],"action":"","property":"","from":"","to":"","reg":false,"x":680,"y":520,"wires":[[]]},{"id":"194846e5.9d6a81","type":"inject","z":"b8e2ec17.d1eb2","name":"At 07:00","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"00 07 * * 1,2,3,4,5","once":false,"onceDelay":0.1,"x":120,"y":160,"wires":[["f154be79.e18b6"]]},{"id":"bb05cb5f.4f5318","type":"change","z":"b8e2ec17.d1eb2","name":"Turn on bedroom light","rules":[{"t":"set","p":"topic","pt":"msg","to":"zigbee2mqtt/bedroom/set","tot":"str"},{"t":"set","p":"payload","pt":"msg","to":"{\"state\":\"ON\",\"transition\":1200,\"brightness\":255}","tot":"json"}],"action":"","property":"","from":"","to":"","reg":false,"x":600,"y":160,"wires":[["7ef6cc91.62130c"]]},{"id":"65b23134.958a48","type":"api-call-service","z":"b8e2ec17.d1eb2","name":"Turn off all lights","server":"6dd794ce.66414c","version":1,"debugenabled":false,"service_domain":"light","service":"turn_off","entityId":"light.bathroom, light.bedroom, light.ensuite, light.office, light.kitchen, light.lounge","data":"","dataType":"json","mergecontext":"","output_location":"","output_location_type":"none","mustacheAltTags":false,"x":800,"y":300,"wires":[[]]},{"id":"9356eb6e.ee585","type":"comment","z":"b8e2ec17.d1eb2","name":"Wake me up!","info":"","x":130,"y":100,"wires":[]},{"id":"8fa45bb3.c4b2b8","type":"comment","z":"b8e2ec17.d1eb2","name":"Turn off the lights when I leave.","info":"","x":190,"y":240,"wires":[]},{"id":"b3c704da.5c4038","type":"api-current-state","z":"b8e2ec17.d1eb2","name":"Are there guests?","server":"6dd794ce.66414c","version":1,"outputs":2,"halt_if":"No","halt_if_type":"str","halt_if_compare":"is","override_topic":false,"entity_id":"sensor.guest_presence","state_type":"str","state_location":"payload","override_payload":"msg","entity_location":"data","override_data":"msg","blockInputOverrides":false,"x":570,"y":300,"wires":[[],["65b23134.958a48"]]},{"id":"afed013b.285818","type":"server-state-changed","z":"52ab68a6.c19f38","name":"Entrance door open","server":"6dd794ce.66414c","entityidfilter":"binary_sensor.entrance_contact","entityidfiltertype":"exact","outputinitially":false,"state_type":"str","haltifstate":"on","halt_if_type":"str","halt_if_compare":"is","outputs":2,"output_only_on_state_change":true,"x":190,"y":340,"wires":[["edb4e6ce.6bc4c8"],[]]},{"id":"edb4e6ce.6bc4c8","type":"delay","z":"52ab68a6.c19f38","name":"","pauseType":"delay","timeout":"3","timeoutUnits":"seconds","rate":"1","nbRateUnits":"1","rateUnits":"second","randomFirst":"1","randomLast":"5","randomUnits":"seconds","drop":false,"x":380,"y":340,"wires":[["531febf.2a4f494"]]},{"id":"531febf.2a4f494","type":"ha-wait-until","z":"52ab68a6.c19f38","name":"Wait until closed","server":"6dd794ce.66414c","outputs":2,"entityId":"binary_sensor.entrance_contact","property":"state","comparator":"is","value":"off","valueType":"str","timeout":"60","timeoutUnits":"seconds","entityLocation":"","entityLocationType":"none","checkCurrentState":true,"x":560,"y":340,"wires":[[],[]]},{"id":"a8ac9005.12ae8","type":"comment","z":"b8e2ec17.d1eb2","name":"Turn lights on when someone enters.","info":"","x":200,"y":400,"wires":[]},{"id":"c03f6213.95c2b","type":"change","z":"b8e2ec17.d1eb2","name":"Turn on entrance light","rules":[{"t":"set","p":"topic","pt":"msg","to":"zigbee2mqtt/entrance/set","tot":"str"},{"t":"set","p":"payload","pt":"msg","to":"{ \"state\": \"ON\", \"transition\": 1 }","tot":"json"}],"action":"","property":"","from":"","to":"","reg":false,"x":640,"y":460,"wires":[["7ef6cc91.62130c"]]},{"id":"83d067f1.2acf5","type":"delay","z":"b8e2ec17.d1eb2","name":"","pauseType":"delay","timeout":"3","timeoutUnits":"seconds","rate":"1","nbRateUnits":"1","rateUnits":"second","randomFirst":"1","randomLast":"5","randomUnits":"seconds","drop":false,"x":600,"y":580,"wires":[["2d72b3be.01963c"]]},{"id":"2d72b3be.01963c","type":"change","z":"b8e2ec17.d1eb2","name":"Turn on kitchen lights","rules":[{"t":"set","p":"topic","pt":"msg","to":"zigbee2mqtt/kitchen_lights/set","tot":"str"},{"t":"set","p":"payload","pt":"msg","to":"{ \"state\": \"ON\", \"transition\": 1 }","tot":"json"}],"action":"","property":"","from":"","to":"","reg":false,"x":800,"y":580,"wires":[["7ef6cc91.62130c"]]},{"id":"d14720a7.febd2","type":"delay","z":"b8e2ec17.d1eb2","name":"","pauseType":"delay","timeout":"2","timeoutUnits":"minutes","rate":"1","nbRateUnits":"1","rateUnits":"second","randomFirst":"1","randomLast":"5","randomUnits":"seconds","drop":false,"x":600,"y":640,"wires":[["2654a942.6f4016","6a25b8a3.88d52"]]},{"id":"2654a942.6f4016","type":"change","z":"b8e2ec17.d1eb2","name":"Turn off entrance light","rules":[{"t":"set","p":"topic","pt":"msg","to":"zigbee2mqtt/entrance/set","tot":"str"},{"t":"set","p":"payload","pt":"msg","to":"{ \"state\": \"OFF\", \"transition\": 1 }","tot":"json"}],"action":"","property":"","from":"","to":"","reg":false,"x":800,"y":620,"wires":[["7ef6cc91.62130c"]]},{"id":"7ef6cc91.62130c","type":"mqtt out","z":"b8e2ec17.d1eb2","name":"Publish action","topic":"","qos":"1","retain":"false","broker":"9cbaa593.a5001","x":1220,"y":160,"wires":[]},{"id":"e3a08e24.dfb5d","type":"subflow:52ab68a6.c19f38","z":"b8e2ec17.d1eb2","name":"","env":[],"x":150,"y":300,"wires":[["2f78feb4.7191b2"]]},{"id":"9c6e3c4c.75fa","type":"subflow:52ab68a6.c19f38","z":"b8e2ec17.d1eb2","name":"","env":[],"x":150,"y":460,"wires":[["460e28b1.fff558"]]},{"id":"a07e5bcb.199618","type":"change","z":"b8e2ec17.d1eb2","name":"Turn on hallway light","rules":[{"t":"set","p":"topic","pt":"msg","to":"zigbee2mqtt/hallway/set","tot":"str"},{"t":"set","p":"payload","pt":"msg","to":"{ \"state\": \"ON\", \"transition\": 1 }","tot":"json"}],"action":"","property":"","from":"","to":"","reg":false,"x":640,"y":500,"wires":[["7ef6cc91.62130c"]]},{"id":"6a25b8a3.88d52","type":"change","z":"b8e2ec17.d1eb2","name":"Turn off hallway light","rules":[{"t":"set","p":"topic","pt":"msg","to":"zigbee2mqtt/hallway/set","tot":"str"},{"t":"set","p":"payload","pt":"msg","to":"{ \"state\": \"OFF\", \"transition\": 1 }","tot":"json"}],"action":"","property":"","from":"","to":"","reg":false,"x":800,"y":660,"wires":[["7ef6cc91.62130c"]]},{"id":"d3422f87.ca13","type":"inject","z":"b8e2ec17.d1eb2","name":"At 11:00","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"00 11 * * *","once":false,"onceDelay":0.1,"x":120,"y":780,"wires":[[]]},{"id":"9269e5a4.5c6218","type":"api-call-service","z":"b8e2ec17.d1eb2","name":"Start Kreacher","server":"6dd794ce.66414c","version":1,"debugenabled":true,"service_domain":"vacuum","service":"start","entityId":"","data":"","dataType":"json","mergecontext":"","output_location":"","output_location_type":"none","mustacheAltTags":false,"x":400,"y":800,"wires":[[]]},{"id":"64ff7951.27f0c","type":"comment","z":"b8e2ec17.d1eb2","name":"Turn lights on when someone enters.","info":"","x":180,"y":720,"wires":[]},{"id":"e3b8fa3e.4e4508","type":"change","z":"8e58ee44.a4437","name":"Turn On (Long Press)","rules":[{"t":"set","p":"payload","pt":"msg","to":"{\"state\":\"ON\",\"transition\":\"0.2\"}","tot":"json"}],"action":"","property":"","from":"","to":"","reg":false,"x":1200,"y":340,"wires":[["abb0f85d.6d1948"]]},{"id":"74ddc50e.e028fc","type":"change","z":"8e58ee44.a4437","name":"Turn Off (Long Press)","rules":[{"t":"set","p":"payload","pt":"msg","to":"{\"state\":\"OFF\",\"transition\":\"0.2\"}","tot":"json"}],"action":"","property":"","from":"","to":"","reg":false,"x":1200,"y":380,"wires":[["abb0f85d.6d1948"]]},{"id":"1ce6d294.3b2d05","type":"function","z":"8e58ee44.a4437","name":"Set lounge and kitchen","func":"return [\n    { ...msg, topic: 'zigbee2mqtt/lounge_lights/set' },\n    { ...msg, topic: 'zigbee2mqtt/kitchen_lights/set' }\n]","outputs":2,"noerr":0,"x":1650,"y":360,"wires":[["830064fc.dc1e"],["830064fc.dc1e"]]},{"id":"abb0f85d.6d1948","type":"switch","z":"8e58ee44.a4437","name":"","property":"topic","propertyType":"msg","rules":[{"t":"cont","v":"lounge","vt":"str"},{"t":"cont","v":"kitchen","vt":"str"},{"t":"cont","v":"bathroom","vt":"str"},{"t":"cont","v":"hallway","vt":"str"},{"t":"cont","v":"entrance","vt":"str"}],"checkall":"true","repair":false,"outputs":5,"x":1410,"y":360,"wires":[["1ce6d294.3b2d05"],["1ce6d294.3b2d05"],["db7977a6.91c808"],["5d5335ea.e34334"],["5d5335ea.e34334"]]},{"id":"db7977a6.91c808","type":"change","z":"8e58ee44.a4437","name":"Set Entrance","rules":[{"t":"set","p":"topic","pt":"msg","to":"zigbee2mqtt/entrance/set","tot":"str"}],"action":"","property":"","from":"","to":"","reg":false,"x":1670,"y":420,"wires":[["830064fc.dc1e"]]},{"id":"d705891.9dfa8f8","type":"server-state-changed","z":"3bad2ed8.06947a","name":"Bathroom humidity changed","server":"6dd794ce.66414c","version":1,"entityidfilter":"sensor.bathroom_climate_humidity","entityidfiltertype":"exact","outputinitially":false,"state_type":"num","haltifstate":"","halt_if_type":"str","halt_if_compare":"is","outputs":1,"output_only_on_state_change":true,"x":250,"y":500,"wires":[["5e8c6586.daf1dc"]]},{"id":"5e8c6586.daf1dc","type":"switch","z":"3bad2ed8.06947a","name":"Check humidity level","property":"payload","propertyType":"msg","rules":[{"t":"lt","v":"50","vt":"num"},{"t":"else"}],"checkall":"false","repair":false,"outputs":2,"x":580,"y":500,"wires":[["89df99a4.71905"],["26fec69f.a06d8a"]]},{"id":"26fec69f.a06d8a","type":"api-call-service","z":"3bad2ed8.06947a","name":"Turn on the fan","server":"6dd794ce.66414c","version":1,"debugenabled":false,"service_domain":"switch","service":"turn_on","entityId":"switch.bathroom_fan","data":"","dataType":"json","mergecontext":"","output_location":"","output_location_type":"none","mustacheAltTags":false,"x":890,"y":520,"wires":[[]]},{"id":"89df99a4.71905","type":"api-call-service","z":"3bad2ed8.06947a","name":"Turn off the fan","server":"6dd794ce.66414c","version":1,"debugenabled":false,"service_domain":"switch","service":"turn_off","entityId":"switch.bathroom_fan","data":"","dataType":"json","mergecontext":"","output_location":"","output_location_type":"none","mustacheAltTags":false,"x":890,"y":460,"wires":[[]]},{"id":"5aaecfd2.ca6b18","type":"change","z":"8e58ee44.a4437","name":"Hallway","rules":[{"t":"set","p":"topic","pt":"msg","to":"zigbee2mqtt/hallway/set","tot":"str"}],"action":"","property":"","from":"","to":"","reg":false,"x":680,"y":140,"wires":[["417d0c86.01c60c"]]},{"id":"5d5335ea.e34334","type":"function","z":"8e58ee44.a4437","name":"Set hallway and entrance","func":"return [\n    { ...msg, topic: 'zigbee2mqtt/hallway/set' },\n    { ...msg, topic: 'zigbee2mqtt/entrance/set' }\n]","outputs":2,"noerr":0,"x":1650,"y":480,"wires":[["830064fc.dc1e"],["830064fc.dc1e"]]},{"id":"5cf08f91.c3fec","type":"mqtt in","z":"434c5286.7d68a4","name":"Events","topic":"zigbee2mqtt/#","qos":"2","datatype":"json","broker":"9cbaa593.a5001","x":230,"y":340,"wires":[["f0ca4db4.9c64"]]},{"id":"f0ca4db4.9c64","type":"switch","z":"434c5286.7d68a4","name":"Cupboard door","property":"topic","propertyType":"msg","rules":[{"t":"cont","v":"cupboard_contact","vt":"str"}],"checkall":"true","repair":true,"outputs":1,"x":420,"y":340,"wires":[["36b096c9.0c49aa"]]},{"id":"36b096c9.0c49aa","type":"switch","z":"434c5286.7d68a4","name":"closed?","property":"payload.contact","propertyType":"msg","rules":[{"t":"true"},{"t":"false"}],"checkall":"true","repair":false,"outputs":2,"x":620,"y":340,"wires":[["ad4071c3.104d18"],["712733ba.951084","510cd965.991dd"]]},{"id":"59b81e0c.6c378","type":"mqtt out","z":"434c5286.7d68a4","name":"Perform Action","topic":"","qos":"1","retain":"false","broker":"9cbaa593.a5001","x":1560,"y":360,"wires":[]},{"id":"3f9b1207.2306ee","type":"change","z":"434c5286.7d68a4","name":"Turn on entrance light","rules":[{"t":"set","p":"payload","pt":"msg","to":"{ \"state\": \"ON\" }","tot":"json"},{"t":"set","p":"topic","pt":"msg","to":"zigbee2mqtt/entrance/set","tot":"str"},{"t":"set","p":"controllingEntranceLight","pt":"flow","to":"true","tot":"bool"}],"action":"","property":"","from":"","to":"","reg":false,"x":1100,"y":360,"wires":[["59b81e0c.6c378","3bda3f57.2286c8"]]},{"id":"ef1b1d07.55dfd8","type":"change","z":"434c5286.7d68a4","name":"Turn off entrance light","rules":[{"t":"set","p":"payload","pt":"msg","to":"{ \"state\": \"OFF\" }","tot":"json"},{"t":"set","p":"topic","pt":"msg","to":"zigbee2mqtt/entrance/set","tot":"str"},{"t":"set","p":"controllingEntranceLight","pt":"flow","to":"false","tot":"bool"}],"action":"","property":"","from":"","to":"","reg":false,"x":1100,"y":300,"wires":[["3b39dbba.81c184"]]},{"id":"ad4071c3.104d18","type":"switch","z":"434c5286.7d68a4","name":"We turned the light on?","property":"controllingEntranceLight","propertyType":"flow","rules":[{"t":"true"}],"checkall":"true","repair":false,"outputs":1,"x":870,"y":300,"wires":[["ef1b1d07.55dfd8"]]},{"id":"3b39dbba.81c184","type":"delay","z":"434c5286.7d68a4","name":"","pauseType":"delay","timeout":"5","timeoutUnits":"seconds","rate":"1","nbRateUnits":"1","rateUnits":"second","randomFirst":"1","randomLast":"5","randomUnits":"seconds","drop":false,"x":1340,"y":300,"wires":[["59b81e0c.6c378"]]},{"id":"712733ba.951084","type":"switch","z":"434c5286.7d68a4","name":"Entrance light is off?","property":"zigbee2mqtt/entrance.state","propertyType":"global","rules":[{"t":"eq","v":"OFF","vt":"str"}],"checkall":"true","repair":false,"outputs":1,"x":860,"y":360,"wires":[["3f9b1207.2306ee"]]},{"id":"510cd965.991dd","type":"debug","z":"434c5286.7d68a4","name":"","active":true,"tosidebar":true,"console":false,"tostatus":false,"complete":"true","targetType":"full","x":840,"y":120,"wires":[]},{"id":"3bda3f57.2286c8","type":"debug","z":"434c5286.7d68a4","name":"","active":true,"tosidebar":true,"console":false,"tostatus":false,"complete":"true","targetType":"full","x":1290,"y":100,"wires":[]},{"id":"1de13575.848713","type":"function","z":"434c5286.7d68a4","name":"","func":"\nreturn { payload: global.keys() };","outputs":1,"noerr":0,"x":430,"y":140,"wires":[["510cd965.991dd"]]},{"id":"47329de7.3c34d4","type":"inject","z":"434c5286.7d68a4","name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"onceDelay":0.1,"x":180,"y":140,"wires":[["1de13575.848713"]]},{"id":"3430330d.5053ec","type":"server-state-changed","z":"3bad2ed8.06947a","name":"En-suite humidity changed","server":"6dd794ce.66414c","version":1,"entityidfilter":"sensor.ensuite_climate_humidity","entityidfiltertype":"exact","outputinitially":true,"state_type":"num","haltifstate":"","halt_if_type":"str","halt_if_compare":"is","outputs":1,"output_only_on_state_change":true,"x":250,"y":740,"wires":[["f8d1eed0.f4e76"]]},{"id":"f8d1eed0.f4e76","type":"switch","z":"3bad2ed8.06947a","name":"Check humidity level","property":"payload","propertyType":"msg","rules":[{"t":"lt","v":"40","vt":"num"},{"t":"else"}],"checkall":"false","repair":false,"outputs":2,"x":570,"y":740,"wires":[["28fc0978.160256"],["f7ed839c.e669"]]},{"id":"f7ed839c.e669","type":"api-call-service","z":"3bad2ed8.06947a","name":"Turn on the fan","server":"6dd794ce.66414c","version":1,"debugenabled":false,"service_domain":"switch","service":"turn_on","entityId":"switch.en_suite_fan","data":"","dataType":"json","mergecontext":"","output_location":"","output_location_type":"none","mustacheAltTags":false,"x":880,"y":760,"wires":[[]]},{"id":"28fc0978.160256","type":"api-call-service","z":"3bad2ed8.06947a","name":"Turn off the fan","server":"6dd794ce.66414c","version":1,"debugenabled":false,"service_domain":"switch","service":"turn_off","entityId":"switch.en_suite_fan","data":"","dataType":"json","mergecontext":"","output_location":"","output_location_type":"none","mustacheAltTags":false,"x":880,"y":700,"wires":[[]]},{"id":"a11e7701.e716d","type":"mqtt in","z":"b44fe0e7.09adb8","name":"Office blinds control pressed?","topic":"zigbee2mqtt/office_blinds_control","qos":"2","datatype":"json","broker":"9cbaa593.a5001","x":250,"y":340,"wires":[["bace78b4.a9e97","32a0459e.2fd1aa"]]},{"id":"bace78b4.a9e97","type":"debug","z":"b44fe0e7.09adb8","name":"","active":true,"tosidebar":true,"console":false,"tostatus":false,"complete":"true","targetType":"full","x":610,"y":180,"wires":[]},{"id":"32a0459e.2fd1aa","type":"switch","z":"b44fe0e7.09adb8","name":"Handle click","property":"payload.click","propertyType":"msg","rules":[{"t":"eq","v":"open","vt":"str"},{"t":"eq","v":"close","vt":"str"}],"checkall":"true","repair":false,"outputs":2,"x":610,"y":340,"wires":[["a870c5fa.b929"],["1ca21769.c02d69"]]},{"id":"c739f2a6.4702d","type":"mqtt out","z":"b44fe0e7.09adb8","name":"Update blinds","topic":"zigbee2mqtt/office_blinds/set","qos":"2","retain":"","broker":"9cbaa593.a5001","x":1080,"y":340,"wires":[]},{"id":"a870c5fa.b929","type":"template","z":"b44fe0e7.09adb8","name":"Open","field":"payload","fieldType":"msg","format":"handlebars","syntax":"mustache","template":"{\n  \"position\": 100\n}","output":"json","x":810,"y":320,"wires":[["c739f2a6.4702d","35490fe2.5f9de"]]},{"id":"1ca21769.c02d69","type":"template","z":"b44fe0e7.09adb8","name":"Close","field":"payload","fieldType":"msg","format":"handlebars","syntax":"mustache","template":"{\n  \"position\": 25\n}","output":"json","x":810,"y":360,"wires":[["c739f2a6.4702d","35490fe2.5f9de"]]},{"id":"6bfe1b99.2b368c","type":"mqtt in","z":"b44fe0e7.09adb8","name":"Office blinds changed?","topic":"zigbee2mqtt/office_blinds","qos":"2","datatype":"json","broker":"9cbaa593.a5001","x":240,"y":500,"wires":[["bace78b4.a9e97","fc378e18.3cf8d"]]},{"id":"fc378e18.3cf8d","type":"change","z":"b44fe0e7.09adb8","name":"Set position","rules":[{"t":"set","p":"payload.position","pt":"msg","to":"currentPosition","tot":"flow"}],"action":"","property":"","from":"","to":"","reg":false,"x":570,"y":500,"wires":[[]]},{"id":"35490fe2.5f9de","type":"change","z":"b44fe0e7.09adb8","name":"Set target position","rules":[{"t":"set","p":"targetPosition","pt":"flow","to":"position","tot":"msg"}],"action":"","property":"","from":"","to":"","reg":false,"x":1090,"y":280,"wires":[[]]},{"id":"4eb71170.236d78","type":"api-current-state","z":"75d24b0f.a8f96c","name":"Toria is home?","server":"6dd794ce.66414c","version":1,"outputs":2,"halt_if":"home","halt_if_type":"str","halt_if_compare":"is","override_topic":false,"entity_id":"person.toria","state_type":"str","state_location":"payload","override_payload":"msg","entity_location":"data","override_data":"msg","blockInputOverrides":false,"x":200,"y":80,"wires":[[],[]]},{"id":"48e0a214.d406fc","type":"api-current-state","z":"75d24b0f.a8f96c","name":"Luke is home?","server":"6dd794ce.66414c","version":1,"outputs":2,"halt_if":"home","halt_if_type":"str","halt_if_compare":"is","override_topic":false,"entity_id":"person.luke","state_type":"str","state_location":"payload","override_payload":"msg","entity_location":"data","override_data":"msg","blockInputOverrides":false,"x":200,"y":140,"wires":[[],[]]},{"id":"f154be79.e18b6","type":"subflow:75d24b0f.a8f96c","z":"b8e2ec17.d1eb2","name":"Anybody home?","env":[],"x":340,"y":160,"wires":[["bb05cb5f.4f5318"]]},{"id":"beb301c8.25242","type":"mqtt in","z":"ece5e39f.8a0c58","name":"Something magic happened?","topic":"zigbee2mqtt/magic_cube","qos":"2","datatype":"json","broker":"9cbaa593.a5001","x":170,"y":280,"wires":[["763954c0.a13164","993d2df.2499b5","4146ee18.271a1"]]},{"id":"763954c0.a13164","type":"switch","z":"ece5e39f.8a0c58","name":"What?","property":"payload.action","propertyType":"msg","rules":[{"t":"eq","v":"shake","vt":"str"},{"t":"eq","v":"flip90","vt":"str"},{"t":"eq","v":"flip180","vt":"str"},{"t":"eq","v":"slide","vt":"str"},{"t":"eq","v":"rotate_right","vt":"str"},{"t":"eq","v":"rotate_left","vt":"str"}],"checkall":"false","repair":false,"outputs":6,"x":430,"y":280,"wires":[["44231ceb.096c84"],[],[],[],[],[]]},{"id":"993d2df.2499b5","type":"debug","z":"ece5e39f.8a0c58","name":"","active":false,"tosidebar":true,"console":false,"tostatus":false,"complete":"false","x":440,"y":180,"wires":[]},{"id":"f2b72a45.73c748","type":"api-call-service","z":"ece5e39f.8a0c58","name":"Play Sonos Everywhere","server":"6dd794ce.66414c","version":1,"debugenabled":false,"service_domain":"sonos","service":"join","entityId":"","data":"{\"master\":\"media_player.lounge\",\"entity_id\":[\"media_player.bedroom\",\"media_player.bathroom\"]}","dataType":"json","mergecontext":"","output_location":"","output_location_type":"none","mustacheAltTags":false,"x":1010,"y":280,"wires":[["2605fd83.f90db2","1baf2b2a.bf27c5"]]},{"id":"44231ceb.096c84","type":"switch","z":"ece5e39f.8a0c58","name":"Playing everywhere?","property":"isPlayingEverywhere","propertyType":"flow","rules":[{"t":"true"},{"t":"false"},{"t":"empty"}],"checkall":"true","repair":false,"outputs":3,"x":700,"y":240,"wires":[["b79574ad.41f42","1baf2b2a.bf27c5"],["f2b72a45.73c748","1baf2b2a.bf27c5"],["f2b72a45.73c748"]]},{"id":"2605fd83.f90db2","type":"change","z":"ece5e39f.8a0c58","name":"","rules":[{"t":"set","p":"isPlayingEverywhere","pt":"flow","to":"true","tot":"bool"}],"action":"","property":"","from":"","to":"","reg":false,"x":1400,"y":300,"wires":[[]]},{"id":"1f1c4606.87aca2","type":"change","z":"ece5e39f.8a0c58","name":"","rules":[{"t":"set","p":"isPlayingEverywhere","pt":"flow","to":"false","tot":"bool"}],"action":"","property":"","from":"","to":"","reg":false,"x":1400,"y":240,"wires":[[]]},{"id":"b79574ad.41f42","type":"api-call-service","z":"ece5e39f.8a0c58","name":"Unjoin Sonos","server":"6dd794ce.66414c","version":1,"debugenabled":false,"service_domain":"sonos","service":"unjoin","entityId":"","data":"{\"entity_id\":[\"media_player.bedroom\",\"media_player.bathroom\"]}","dataType":"json","mergecontext":"","output_location":"","output_location_type":"none","mustacheAltTags":false,"x":980,"y":220,"wires":[["1f1c4606.87aca2","1baf2b2a.bf27c5"]]},{"id":"1baf2b2a.bf27c5","type":"debug","z":"ece5e39f.8a0c58","name":"","active":true,"tosidebar":true,"console":false,"tostatus":false,"complete":"true","targetType":"full","x":1320,"y":180,"wires":[]},{"id":"4146ee18.271a1","type":"function","z":"ece5e39f.8a0c58","name":"","func":"if (typeof flow.get('isPlayingEverywhere') === 'undefined') {\n    flow.set('isPlayingEverywhere', false);\n}\n\nconsole.log(`isPlayingEverywhere: ${flow.get('isPlayingEverywhere')}`)","outputs":0,"noerr":0,"x":430,"y":120,"wires":[]},{"id":"2f78feb4.7191b2","type":"time-range-switch","z":"b8e2ec17.d1eb2","name":"Is it morning?","lat":"51.50723","lon":"-0.09818","startTime":"06:00","endTime":"10:00","startOffset":0,"endOffset":"0","x":340,"y":300,"wires":[["b3c704da.5c4038"],[]]},{"id":"460e28b1.fff558","type":"time-range-switch","z":"b8e2ec17.d1eb2","name":"Is it evening?","lat":"51.50723","lon":"-0.09818","startTime":"16:00","endTime":"03:00","startOffset":0,"endOffset":"0","x":350,"y":460,"wires":[["c03f6213.95c2b","83d067f1.2acf5","d14720a7.febd2","a07e5bcb.199618"],[]]}]
+[
+    {
+        "id": "8e58ee44.a4437",
+        "type": "tab",
+        "label": "Light Switches",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "b8e2ec17.d1eb2",
+        "type": "tab",
+        "label": "Timers",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "434c5286.7d68a4",
+        "type": "tab",
+        "label": "Storage Cupboard Light",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "3bad2ed8.06947a",
+        "type": "tab",
+        "label": "Bathroom fans",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "b44fe0e7.09adb8",
+        "type": "tab",
+        "label": "Blinds Controls",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "ece5e39f.8a0c58",
+        "type": "tab",
+        "label": "Magic Cube",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "9b41e9d4.08d7b8",
+        "type": "subflow",
+        "name": "Front door toggled?",
+        "info": "",
+        "category": "home_assistant",
+        "in": [],
+        "out": [
+            {
+                "x": 760,
+                "y": 340,
+                "wires": [
+                    {
+                        "id": "288912f4.f00d06",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": []
+    },
+    {
+        "id": "e88800ac.be03b8",
+        "type": "subflow",
+        "name": "Anybody home?",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 40,
+                "y": 100,
+                "wires": [
+                    {
+                        "id": "e88713fd.b028"
+                    },
+                    {
+                        "id": "3481bf57.73cc08"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 440,
+                "y": 140,
+                "wires": [
+                    {
+                        "id": "e88713fd.b028",
+                        "port": 0
+                    },
+                    {
+                        "id": "3481bf57.73cc08",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [],
+        "color": "#DDAA99",
+        "status": {
+            "x": 440,
+            "y": 80,
+            "wires": [
+                {
+                    "id": "e88713fd.b028",
+                    "port": 0
+                },
+                {
+                    "id": "3481bf57.73cc08",
+                    "port": 0
+                },
+                {
+                    "id": "e88713fd.b028",
+                    "port": 1
+                },
+                {
+                    "id": "3481bf57.73cc08",
+                    "port": 1
+                }
+            ]
+        }
+    },
+    {
+        "id": "9cbaa593.a5001",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "Mosquitto",
+        "broker": "mosquitto.mosquitto.svc.cluster.local",
+        "port": "1883",
+        "tls": "",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": false,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "node-red",
+        "birthQos": "1",
+        "birthRetain": "true",
+        "birthPayload": "{\"connected\" : true}",
+        "closeTopic": "node-red",
+        "closeQos": "1",
+        "closeRetain": "true",
+        "closePayload": "{\"connected\" : false}",
+        "willTopic": "node-red",
+        "willQos": "1",
+        "willRetain": "true",
+        "willPayload": "{\"connected\" : false}"
+    },
+    {
+        "id": "6dd794ce.66414c",
+        "type": "server",
+        "z": "",
+        "name": "Home Assistant",
+        "legacy": false,
+        "addon": false,
+        "rejectUnauthorizedCerts": true,
+        "ha_boolean": "y|yes|true|on|home|open",
+        "connectionDelay": true,
+        "cacheJson": true
+    },
+    {
+        "id": "8c84c35d.2d8c08",
+        "type": "server-state-changed",
+        "z": "9b41e9d4.08d7b8",
+        "name": "Entrance door open",
+        "server": "6dd794ce.66414c",
+        "version": "1",
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "binary_sensor.entrance_contact",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "x": 190,
+        "y": 340,
+        "wires": [
+            [],
+            [
+                "c3ff21f5.f8eb58"
+            ]
+        ]
+    },
+    {
+        "id": "c3ff21f5.f8eb58",
+        "type": "delay",
+        "z": "9b41e9d4.08d7b8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "3",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 380,
+        "y": 340,
+        "wires": [
+            [
+                "288912f4.f00d06"
+            ]
+        ]
+    },
+    {
+        "id": "288912f4.f00d06",
+        "type": "ha-wait-until",
+        "z": "9b41e9d4.08d7b8",
+        "name": "Wait until closed",
+        "server": "6dd794ce.66414c",
+        "outputs": 2,
+        "entityId": "binary_sensor.entrance_contact",
+        "entityIdFilterType": "exact",
+        "property": "state",
+        "comparator": "is",
+        "value": "off",
+        "valueType": "str",
+        "timeout": "60",
+        "timeoutType": "num",
+        "timeoutUnits": "seconds",
+        "entityLocation": "",
+        "entityLocationType": "none",
+        "checkCurrentState": true,
+        "blockInputOverrides": true,
+        "x": 560,
+        "y": 340,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "e88713fd.b028",
+        "type": "api-current-state",
+        "z": "e88800ac.be03b8",
+        "name": "Toria is home?",
+        "server": "6dd794ce.66414c",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "home",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "person.toria",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 200,
+        "y": 80,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "3481bf57.73cc08",
+        "type": "api-current-state",
+        "z": "e88800ac.be03b8",
+        "name": "Luke is home?",
+        "server": "6dd794ce.66414c",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "home",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "person.luke",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 200,
+        "y": 140,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "b2788107.329e48",
+        "type": "mqtt in",
+        "z": "8e58ee44.a4437",
+        "name": "Events",
+        "topic": "zigbee2mqtt/#",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "9cbaa593.a5001",
+        "x": 110,
+        "y": 240,
+        "wires": [
+            [
+                "1abeb468.711e1c",
+                "e7951edb.8c4a3",
+                "f99bb183.78d538"
+            ]
+        ]
+    },
+    {
+        "id": "1abeb468.711e1c",
+        "type": "function",
+        "z": "8e58ee44.a4437",
+        "name": "Save current value",
+        "func": "global.set(msg.topic, msg.payload)\n\nreturn [];",
+        "outputs": 0,
+        "noerr": 0,
+        "x": 430,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "e7951edb.8c4a3",
+        "type": "switch",
+        "z": "8e58ee44.a4437",
+        "name": "Control Switches",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "cont",
+                "v": "office",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "hallway",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "entrance",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "ensuite",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "bathroom",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "bedroom",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "kitchen",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "lounge",
+                "vt": "str"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 8,
+        "x": 430,
+        "y": 240,
+        "wires": [
+            [
+                "e5ee588a.13ef3"
+            ],
+            [
+                "5aaecfd2.ca6b18"
+            ],
+            [
+                "aa7d38a0.9f732"
+            ],
+            [
+                "1a937e8.28d3302"
+            ],
+            [
+                "87e19edc.95bef"
+            ],
+            [
+                "79cd220d.d0760c"
+            ],
+            [
+                "8ca93c39.7a3c3"
+            ],
+            [
+                "8adf22b8.293f6"
+            ]
+        ]
+    },
+    {
+        "id": "417d0c86.01c60c",
+        "type": "switch",
+        "z": "8e58ee44.a4437",
+        "name": "Switch",
+        "property": "payload.action",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "on-press",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "off-press",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "up-press",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "down-press",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "off-hold",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "off-hold-release",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "on-hold",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "on-hold-release",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 8,
+        "x": 890,
+        "y": 240,
+        "wires": [
+            [
+                "eec7cc54.6646a"
+            ],
+            [
+                "cded7c0f.31c42"
+            ],
+            [
+                "21ab7b50.f228fc"
+            ],
+            [
+                "21ab7b50.f228fc"
+            ],
+            [],
+            [
+                "74ddc50e.e028fc"
+            ],
+            [],
+            [
+                "e3b8fa3e.4e4508"
+            ]
+        ]
+    },
+    {
+        "id": "eec7cc54.6646a",
+        "type": "change",
+        "z": "8e58ee44.a4437",
+        "name": "Turn On",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\"state\":\"ON\",\"transition\":\"0.2\"}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1160,
+        "y": 180,
+        "wires": [
+            [
+                "2da57b46.782dc4"
+            ]
+        ]
+    },
+    {
+        "id": "e5ee588a.13ef3",
+        "type": "change",
+        "z": "8e58ee44.a4437",
+        "name": "Office",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "zigbee2mqtt/office/set",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 670,
+        "y": 100,
+        "wires": [
+            [
+                "417d0c86.01c60c"
+            ]
+        ]
+    },
+    {
+        "id": "cded7c0f.31c42",
+        "type": "change",
+        "z": "8e58ee44.a4437",
+        "name": "Turn Off",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\"state\":\"OFF\",\"transition\":\"0.2\"}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1160,
+        "y": 220,
+        "wires": [
+            [
+                "2da57b46.782dc4"
+            ]
+        ]
+    },
+    {
+        "id": "830064fc.dc1e",
+        "type": "mqtt out",
+        "z": "8e58ee44.a4437",
+        "name": "Perform Action",
+        "topic": "",
+        "qos": "1",
+        "retain": "false",
+        "broker": "9cbaa593.a5001",
+        "x": 1980,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "2da57b46.782dc4",
+        "type": "function",
+        "z": "8e58ee44.a4437",
+        "name": "Not already on or off?",
+        "func": "const currentValue = global.get(msg.topic.replace(/\\/set$/, ''))\n\nconst { state } = currentValue || {}\n\nif (state === msg.payload.state) return []\n\nelse return msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1500,
+        "y": 200,
+        "wires": [
+            [
+                "830064fc.dc1e"
+            ]
+        ]
+    },
+    {
+        "id": "aa7d38a0.9f732",
+        "type": "change",
+        "z": "8e58ee44.a4437",
+        "name": "Entrance",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "zigbee2mqtt/entrance/set",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 680,
+        "y": 180,
+        "wires": [
+            [
+                "417d0c86.01c60c"
+            ]
+        ]
+    },
+    {
+        "id": "21ab7b50.f228fc",
+        "type": "change",
+        "z": "8e58ee44.a4437",
+        "name": "Press Up / Down",
+        "rules": [
+            {
+                "t": "set",
+                "p": "tmp",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{}",
+                "tot": "json"
+            },
+            {
+                "t": "set",
+                "p": "payload.state",
+                "pt": "msg",
+                "to": "ON",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "payload.brightness",
+                "pt": "msg",
+                "to": "tmp.brightness",
+                "tot": "flow"
+            },
+            {
+                "t": "set",
+                "p": "payload.transition",
+                "pt": "msg",
+                "to": "0.2",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1190,
+        "y": 280,
+        "wires": [
+            [
+                "830064fc.dc1e"
+            ]
+        ]
+    },
+    {
+        "id": "1a937e8.28d3302",
+        "type": "change",
+        "z": "8e58ee44.a4437",
+        "name": "En-Suite",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "zigbee2mqtt/ensuite_lights/set",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 680,
+        "y": 220,
+        "wires": [
+            [
+                "417d0c86.01c60c"
+            ]
+        ]
+    },
+    {
+        "id": "87e19edc.95bef",
+        "type": "change",
+        "z": "8e58ee44.a4437",
+        "name": "Bathroom",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "zigbee2mqtt/bathroom_lights/set",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 680,
+        "y": 260,
+        "wires": [
+            [
+                "417d0c86.01c60c"
+            ]
+        ]
+    },
+    {
+        "id": "79cd220d.d0760c",
+        "type": "change",
+        "z": "8e58ee44.a4437",
+        "name": "Bedroom",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "zigbee2mqtt/bedroom/set",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 680,
+        "y": 300,
+        "wires": [
+            [
+                "417d0c86.01c60c"
+            ]
+        ]
+    },
+    {
+        "id": "8ca93c39.7a3c3",
+        "type": "change",
+        "z": "8e58ee44.a4437",
+        "name": "Kitchen",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "zigbee2mqtt/kitchen_lights/set",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 680,
+        "y": 340,
+        "wires": [
+            [
+                "417d0c86.01c60c"
+            ]
+        ]
+    },
+    {
+        "id": "8adf22b8.293f6",
+        "type": "change",
+        "z": "8e58ee44.a4437",
+        "name": "Lounge",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "zigbee2mqtt/lounge_lights/set",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 680,
+        "y": 380,
+        "wires": [
+            [
+                "417d0c86.01c60c"
+            ]
+        ]
+    },
+    {
+        "id": "f99bb183.78d538",
+        "type": "switch",
+        "z": "8e58ee44.a4437",
+        "name": "Door Contacts",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "cont",
+                "v": "ensuite",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "bathroom",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "entrance",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 440,
+        "y": 480,
+        "wires": [
+            [
+                "702461ba.d464c8"
+            ],
+            [
+                "53b8b320.fc5e14"
+            ],
+            [
+                "fdc5de40.6fb5d8"
+            ]
+        ]
+    },
+    {
+        "id": "ae30d519.ddfe68",
+        "type": "switch",
+        "z": "8e58ee44.a4437",
+        "name": "Door opened?",
+        "property": "payload.contact",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 920,
+        "y": 460,
+        "wires": [
+            [
+                "eec7cc54.6646a"
+            ]
+        ]
+    },
+    {
+        "id": "702461ba.d464c8",
+        "type": "change",
+        "z": "8e58ee44.a4437",
+        "name": "En-Suite",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "zigbee2mqtt/ensuite_lights/set",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 680,
+        "y": 440,
+        "wires": [
+            [
+                "ae30d519.ddfe68"
+            ]
+        ]
+    },
+    {
+        "id": "53b8b320.fc5e14",
+        "type": "change",
+        "z": "8e58ee44.a4437",
+        "name": "Bathroom",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "zigbee2mqtt/bathroom_lights/set",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 680,
+        "y": 480,
+        "wires": [
+            [
+                "ae30d519.ddfe68"
+            ]
+        ]
+    },
+    {
+        "id": "fdc5de40.6fb5d8",
+        "type": "change",
+        "z": "8e58ee44.a4437",
+        "name": "Entrance",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "zigbee2mqtt/entrance/set",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 680,
+        "y": 520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "194846e5.9d6a81",
+        "type": "inject",
+        "z": "b8e2ec17.d1eb2",
+        "name": "At 07:00",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "00 07 * * 1,2,3,4,5",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 120,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bb05cb5f.4f5318",
+        "type": "change",
+        "z": "b8e2ec17.d1eb2",
+        "name": "Turn on bedroom light",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "zigbee2mqtt/bedroom/set",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\"state\":\"ON\",\"transition\":1200,\"brightness\":255}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 600,
+        "y": 160,
+        "wires": [
+            [
+                "7ef6cc91.62130c"
+            ]
+        ]
+    },
+    {
+        "id": "65b23134.958a48",
+        "type": "api-call-service",
+        "z": "b8e2ec17.d1eb2",
+        "name": "Turn off all lights",
+        "server": "6dd794ce.66414c",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "turn_off",
+        "entityId": "light.bathroom, light.bedroom, light.ensuite, light.office, light.kitchen, light.lounge",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 800,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9356eb6e.ee585",
+        "type": "comment",
+        "z": "b8e2ec17.d1eb2",
+        "name": "Wake me up!",
+        "info": "",
+        "x": 130,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "8fa45bb3.c4b2b8",
+        "type": "comment",
+        "z": "b8e2ec17.d1eb2",
+        "name": "Turn off the lights when I leave.",
+        "info": "",
+        "x": 190,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "b3c704da.5c4038",
+        "type": "api-current-state",
+        "z": "b8e2ec17.d1eb2",
+        "name": "Are there guests?",
+        "server": "6dd794ce.66414c",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "No",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "sensor.guest_presence",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 570,
+        "y": 300,
+        "wires": [
+            [],
+            [
+                "65b23134.958a48"
+            ]
+        ]
+    },
+    {
+        "id": "a8ac9005.12ae8",
+        "type": "comment",
+        "z": "b8e2ec17.d1eb2",
+        "name": "Turn lights on when someone enters.",
+        "info": "",
+        "x": 200,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "c03f6213.95c2b",
+        "type": "change",
+        "z": "b8e2ec17.d1eb2",
+        "name": "Turn on entrance light",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "zigbee2mqtt/entrance/set",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{ \"state\": \"ON\", \"transition\": 1 }",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 640,
+        "y": 460,
+        "wires": [
+            [
+                "7ef6cc91.62130c"
+            ]
+        ]
+    },
+    {
+        "id": "83d067f1.2acf5",
+        "type": "delay",
+        "z": "b8e2ec17.d1eb2",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "3",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 600,
+        "y": 580,
+        "wires": [
+            [
+                "2d72b3be.01963c"
+            ]
+        ]
+    },
+    {
+        "id": "2d72b3be.01963c",
+        "type": "change",
+        "z": "b8e2ec17.d1eb2",
+        "name": "Turn on kitchen lights",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "zigbee2mqtt/kitchen_lights/set",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{ \"state\": \"ON\", \"transition\": 1 }",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 800,
+        "y": 580,
+        "wires": [
+            [
+                "7ef6cc91.62130c"
+            ]
+        ]
+    },
+    {
+        "id": "d14720a7.febd2",
+        "type": "delay",
+        "z": "b8e2ec17.d1eb2",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "2",
+        "timeoutUnits": "minutes",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 600,
+        "y": 640,
+        "wires": [
+            [
+                "2654a942.6f4016",
+                "6a25b8a3.88d52"
+            ]
+        ]
+    },
+    {
+        "id": "2654a942.6f4016",
+        "type": "change",
+        "z": "b8e2ec17.d1eb2",
+        "name": "Turn off entrance light",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "zigbee2mqtt/entrance/set",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{ \"state\": \"OFF\", \"transition\": 1 }",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 800,
+        "y": 620,
+        "wires": [
+            [
+                "7ef6cc91.62130c"
+            ]
+        ]
+    },
+    {
+        "id": "7ef6cc91.62130c",
+        "type": "mqtt out",
+        "z": "b8e2ec17.d1eb2",
+        "name": "Publish action",
+        "topic": "",
+        "qos": "1",
+        "retain": "false",
+        "broker": "9cbaa593.a5001",
+        "x": 1220,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "a07e5bcb.199618",
+        "type": "change",
+        "z": "b8e2ec17.d1eb2",
+        "name": "Turn on hallway light",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "zigbee2mqtt/hallway/set",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{ \"state\": \"ON\", \"transition\": 1 }",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 640,
+        "y": 500,
+        "wires": [
+            [
+                "7ef6cc91.62130c"
+            ]
+        ]
+    },
+    {
+        "id": "6a25b8a3.88d52",
+        "type": "change",
+        "z": "b8e2ec17.d1eb2",
+        "name": "Turn off hallway light",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "zigbee2mqtt/hallway/set",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{ \"state\": \"OFF\", \"transition\": 1 }",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 800,
+        "y": 660,
+        "wires": [
+            [
+                "7ef6cc91.62130c"
+            ]
+        ]
+    },
+    {
+        "id": "64ff7951.27f0c",
+        "type": "comment",
+        "z": "b8e2ec17.d1eb2",
+        "name": "Turn lights on when someone enters.",
+        "info": "",
+        "x": 180,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "e3b8fa3e.4e4508",
+        "type": "change",
+        "z": "8e58ee44.a4437",
+        "name": "Turn On (Long Press)",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\"state\":\"ON\",\"transition\":\"0.2\"}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1200,
+        "y": 340,
+        "wires": [
+            [
+                "abb0f85d.6d1948"
+            ]
+        ]
+    },
+    {
+        "id": "74ddc50e.e028fc",
+        "type": "change",
+        "z": "8e58ee44.a4437",
+        "name": "Turn Off (Long Press)",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\"state\":\"OFF\",\"transition\":\"0.2\"}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1200,
+        "y": 380,
+        "wires": [
+            [
+                "abb0f85d.6d1948"
+            ]
+        ]
+    },
+    {
+        "id": "1ce6d294.3b2d05",
+        "type": "function",
+        "z": "8e58ee44.a4437",
+        "name": "Set lounge and kitchen",
+        "func": "return [\n    { ...msg, topic: 'zigbee2mqtt/lounge_lights/set' },\n    { ...msg, topic: 'zigbee2mqtt/kitchen_lights/set' }\n]",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 1650,
+        "y": 360,
+        "wires": [
+            [
+                "830064fc.dc1e"
+            ],
+            [
+                "830064fc.dc1e"
+            ]
+        ]
+    },
+    {
+        "id": "abb0f85d.6d1948",
+        "type": "switch",
+        "z": "8e58ee44.a4437",
+        "name": "",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "cont",
+                "v": "lounge",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "kitchen",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "bathroom",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "hallway",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "entrance",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 5,
+        "x": 1410,
+        "y": 360,
+        "wires": [
+            [
+                "1ce6d294.3b2d05"
+            ],
+            [
+                "1ce6d294.3b2d05"
+            ],
+            [
+                "db7977a6.91c808"
+            ],
+            [
+                "5d5335ea.e34334"
+            ],
+            [
+                "5d5335ea.e34334"
+            ]
+        ]
+    },
+    {
+        "id": "db7977a6.91c808",
+        "type": "change",
+        "z": "8e58ee44.a4437",
+        "name": "Set Entrance",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "zigbee2mqtt/entrance/set",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1670,
+        "y": 420,
+        "wires": [
+            [
+                "830064fc.dc1e"
+            ]
+        ]
+    },
+    {
+        "id": "d705891.9dfa8f8",
+        "type": "server-state-changed",
+        "z": "3bad2ed8.06947a",
+        "name": "Bathroom humidity changed",
+        "server": "6dd794ce.66414c",
+        "version": 1,
+        "entityidfilter": "sensor.bathroom_climate_humidity",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "num",
+        "haltifstate": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "output_only_on_state_change": true,
+        "x": 250,
+        "y": 500,
+        "wires": [
+            [
+                "5e8c6586.daf1dc"
+            ]
+        ]
+    },
+    {
+        "id": "5e8c6586.daf1dc",
+        "type": "switch",
+        "z": "3bad2ed8.06947a",
+        "name": "Check humidity level",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "lt",
+                "v": "50",
+                "vt": "num"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 580,
+        "y": 500,
+        "wires": [
+            [
+                "89df99a4.71905"
+            ],
+            [
+                "26fec69f.a06d8a"
+            ]
+        ]
+    },
+    {
+        "id": "26fec69f.a06d8a",
+        "type": "api-call-service",
+        "z": "3bad2ed8.06947a",
+        "name": "Turn on the fan",
+        "server": "6dd794ce.66414c",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "switch",
+        "service": "turn_on",
+        "entityId": "switch.bathroom_fan",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 890,
+        "y": 520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "89df99a4.71905",
+        "type": "api-call-service",
+        "z": "3bad2ed8.06947a",
+        "name": "Turn off the fan",
+        "server": "6dd794ce.66414c",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "switch",
+        "service": "turn_off",
+        "entityId": "switch.bathroom_fan",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 890,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5aaecfd2.ca6b18",
+        "type": "change",
+        "z": "8e58ee44.a4437",
+        "name": "Hallway",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "zigbee2mqtt/hallway/set",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 680,
+        "y": 140,
+        "wires": [
+            [
+                "417d0c86.01c60c"
+            ]
+        ]
+    },
+    {
+        "id": "5d5335ea.e34334",
+        "type": "function",
+        "z": "8e58ee44.a4437",
+        "name": "Set hallway and entrance",
+        "func": "return [\n    { ...msg, topic: 'zigbee2mqtt/hallway/set' },\n    { ...msg, topic: 'zigbee2mqtt/entrance/set' }\n]",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 1650,
+        "y": 480,
+        "wires": [
+            [
+                "830064fc.dc1e"
+            ],
+            [
+                "830064fc.dc1e"
+            ]
+        ]
+    },
+    {
+        "id": "5cf08f91.c3fec",
+        "type": "mqtt in",
+        "z": "434c5286.7d68a4",
+        "name": "Events",
+        "topic": "zigbee2mqtt/#",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "9cbaa593.a5001",
+        "x": 230,
+        "y": 340,
+        "wires": [
+            [
+                "f0ca4db4.9c64"
+            ]
+        ]
+    },
+    {
+        "id": "f0ca4db4.9c64",
+        "type": "switch",
+        "z": "434c5286.7d68a4",
+        "name": "Cupboard door",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "cont",
+                "v": "cupboard_contact",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": true,
+        "outputs": 1,
+        "x": 420,
+        "y": 340,
+        "wires": [
+            [
+                "36b096c9.0c49aa"
+            ]
+        ]
+    },
+    {
+        "id": "36b096c9.0c49aa",
+        "type": "switch",
+        "z": "434c5286.7d68a4",
+        "name": "closed?",
+        "property": "payload.contact",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 620,
+        "y": 340,
+        "wires": [
+            [
+                "ad4071c3.104d18"
+            ],
+            [
+                "712733ba.951084",
+                "510cd965.991dd"
+            ]
+        ]
+    },
+    {
+        "id": "59b81e0c.6c378",
+        "type": "mqtt out",
+        "z": "434c5286.7d68a4",
+        "name": "Perform Action",
+        "topic": "",
+        "qos": "1",
+        "retain": "false",
+        "broker": "9cbaa593.a5001",
+        "x": 1560,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "3f9b1207.2306ee",
+        "type": "change",
+        "z": "434c5286.7d68a4",
+        "name": "Turn on entrance light",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{ \"state\": \"ON\" }",
+                "tot": "json"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "zigbee2mqtt/entrance/set",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "controllingEntranceLight",
+                "pt": "flow",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1100,
+        "y": 360,
+        "wires": [
+            [
+                "59b81e0c.6c378",
+                "3bda3f57.2286c8"
+            ]
+        ]
+    },
+    {
+        "id": "ef1b1d07.55dfd8",
+        "type": "change",
+        "z": "434c5286.7d68a4",
+        "name": "Turn off entrance light",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{ \"state\": \"OFF\" }",
+                "tot": "json"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "zigbee2mqtt/entrance/set",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "controllingEntranceLight",
+                "pt": "flow",
+                "to": "false",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1100,
+        "y": 300,
+        "wires": [
+            [
+                "3b39dbba.81c184"
+            ]
+        ]
+    },
+    {
+        "id": "ad4071c3.104d18",
+        "type": "switch",
+        "z": "434c5286.7d68a4",
+        "name": "We turned the light on?",
+        "property": "controllingEntranceLight",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 870,
+        "y": 300,
+        "wires": [
+            [
+                "ef1b1d07.55dfd8"
+            ]
+        ]
+    },
+    {
+        "id": "3b39dbba.81c184",
+        "type": "delay",
+        "z": "434c5286.7d68a4",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 1340,
+        "y": 300,
+        "wires": [
+            [
+                "59b81e0c.6c378"
+            ]
+        ]
+    },
+    {
+        "id": "712733ba.951084",
+        "type": "switch",
+        "z": "434c5286.7d68a4",
+        "name": "Entrance light is off?",
+        "property": "zigbee2mqtt/entrance.state",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "OFF",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 860,
+        "y": 360,
+        "wires": [
+            [
+                "3f9b1207.2306ee"
+            ]
+        ]
+    },
+    {
+        "id": "510cd965.991dd",
+        "type": "debug",
+        "z": "434c5286.7d68a4",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 840,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "3bda3f57.2286c8",
+        "type": "debug",
+        "z": "434c5286.7d68a4",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 1290,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "1de13575.848713",
+        "type": "function",
+        "z": "434c5286.7d68a4",
+        "name": "",
+        "func": "\nreturn { payload: global.keys() };",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 430,
+        "y": 140,
+        "wires": [
+            [
+                "510cd965.991dd"
+            ]
+        ]
+    },
+    {
+        "id": "47329de7.3c34d4",
+        "type": "inject",
+        "z": "434c5286.7d68a4",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 180,
+        "y": 140,
+        "wires": [
+            [
+                "1de13575.848713"
+            ]
+        ]
+    },
+    {
+        "id": "3430330d.5053ec",
+        "type": "server-state-changed",
+        "z": "3bad2ed8.06947a",
+        "name": "En-suite humidity changed",
+        "server": "6dd794ce.66414c",
+        "version": 1,
+        "entityidfilter": "sensor.ensuite_climate_humidity",
+        "entityidfiltertype": "exact",
+        "outputinitially": true,
+        "state_type": "num",
+        "haltifstate": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "output_only_on_state_change": true,
+        "x": 250,
+        "y": 740,
+        "wires": [
+            [
+                "f8d1eed0.f4e76"
+            ]
+        ]
+    },
+    {
+        "id": "f8d1eed0.f4e76",
+        "type": "switch",
+        "z": "3bad2ed8.06947a",
+        "name": "Check humidity level",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "lt",
+                "v": "40",
+                "vt": "num"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 570,
+        "y": 740,
+        "wires": [
+            [
+                "28fc0978.160256"
+            ],
+            [
+                "f7ed839c.e669"
+            ]
+        ]
+    },
+    {
+        "id": "f7ed839c.e669",
+        "type": "api-call-service",
+        "z": "3bad2ed8.06947a",
+        "name": "Turn on the fan",
+        "server": "6dd794ce.66414c",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "switch",
+        "service": "turn_on",
+        "entityId": "switch.en_suite_fan",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 880,
+        "y": 760,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "28fc0978.160256",
+        "type": "api-call-service",
+        "z": "3bad2ed8.06947a",
+        "name": "Turn off the fan",
+        "server": "6dd794ce.66414c",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "switch",
+        "service": "turn_off",
+        "entityId": "switch.en_suite_fan",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 880,
+        "y": 700,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a11e7701.e716d",
+        "type": "mqtt in",
+        "z": "b44fe0e7.09adb8",
+        "name": "Office blinds control pressed?",
+        "topic": "zigbee2mqtt/office_blinds_control",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "9cbaa593.a5001",
+        "x": 250,
+        "y": 340,
+        "wires": [
+            [
+                "bace78b4.a9e97",
+                "32a0459e.2fd1aa"
+            ]
+        ]
+    },
+    {
+        "id": "bace78b4.a9e97",
+        "type": "debug",
+        "z": "b44fe0e7.09adb8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 610,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "32a0459e.2fd1aa",
+        "type": "switch",
+        "z": "b44fe0e7.09adb8",
+        "name": "Handle click",
+        "property": "payload.click",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "open",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "close",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 610,
+        "y": 340,
+        "wires": [
+            [
+                "a870c5fa.b929"
+            ],
+            [
+                "1ca21769.c02d69"
+            ]
+        ]
+    },
+    {
+        "id": "c739f2a6.4702d",
+        "type": "mqtt out",
+        "z": "b44fe0e7.09adb8",
+        "name": "Update blinds",
+        "topic": "zigbee2mqtt/office_blinds/set",
+        "qos": "2",
+        "retain": "",
+        "broker": "9cbaa593.a5001",
+        "x": 1080,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "a870c5fa.b929",
+        "type": "template",
+        "z": "b44fe0e7.09adb8",
+        "name": "Open",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\n  \"position\": 100\n}",
+        "output": "json",
+        "x": 810,
+        "y": 320,
+        "wires": [
+            [
+                "c739f2a6.4702d",
+                "35490fe2.5f9de"
+            ]
+        ]
+    },
+    {
+        "id": "1ca21769.c02d69",
+        "type": "template",
+        "z": "b44fe0e7.09adb8",
+        "name": "Close",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\n  \"position\": 25\n}",
+        "output": "json",
+        "x": 810,
+        "y": 360,
+        "wires": [
+            [
+                "c739f2a6.4702d",
+                "35490fe2.5f9de"
+            ]
+        ]
+    },
+    {
+        "id": "6bfe1b99.2b368c",
+        "type": "mqtt in",
+        "z": "b44fe0e7.09adb8",
+        "name": "Office blinds changed?",
+        "topic": "zigbee2mqtt/office_blinds",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "9cbaa593.a5001",
+        "x": 240,
+        "y": 500,
+        "wires": [
+            [
+                "bace78b4.a9e97",
+                "fc378e18.3cf8d"
+            ]
+        ]
+    },
+    {
+        "id": "fc378e18.3cf8d",
+        "type": "change",
+        "z": "b44fe0e7.09adb8",
+        "name": "Set position",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.position",
+                "pt": "msg",
+                "to": "currentPosition",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 570,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "35490fe2.5f9de",
+        "type": "change",
+        "z": "b44fe0e7.09adb8",
+        "name": "Set target position",
+        "rules": [
+            {
+                "t": "set",
+                "p": "targetPosition",
+                "pt": "flow",
+                "to": "position",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1090,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "beb301c8.25242",
+        "type": "mqtt in",
+        "z": "ece5e39f.8a0c58",
+        "name": "Something magic happened?",
+        "topic": "zigbee2mqtt/magic_cube",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "9cbaa593.a5001",
+        "x": 170,
+        "y": 280,
+        "wires": [
+            [
+                "763954c0.a13164",
+                "993d2df.2499b5",
+                "4146ee18.271a1"
+            ]
+        ]
+    },
+    {
+        "id": "763954c0.a13164",
+        "type": "switch",
+        "z": "ece5e39f.8a0c58",
+        "name": "What?",
+        "property": "payload.action",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "shake",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "flip90",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "flip180",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "slide",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "rotate_right",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "rotate_left",
+                "vt": "str"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 6,
+        "x": 430,
+        "y": 280,
+        "wires": [
+            [
+                "44231ceb.096c84"
+            ],
+            [],
+            [],
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "993d2df.2499b5",
+        "type": "debug",
+        "z": "ece5e39f.8a0c58",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 440,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "f2b72a45.73c748",
+        "type": "api-call-service",
+        "z": "ece5e39f.8a0c58",
+        "name": "Play Sonos Everywhere",
+        "server": "6dd794ce.66414c",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "sonos",
+        "service": "join",
+        "entityId": "",
+        "data": "{\"master\":\"media_player.lounge\",\"entity_id\":[\"media_player.bedroom\",\"media_player.bathroom\"]}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1010,
+        "y": 280,
+        "wires": [
+            [
+                "2605fd83.f90db2",
+                "1baf2b2a.bf27c5"
+            ]
+        ]
+    },
+    {
+        "id": "44231ceb.096c84",
+        "type": "switch",
+        "z": "ece5e39f.8a0c58",
+        "name": "Playing everywhere?",
+        "property": "isPlayingEverywhere",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            },
+            {
+                "t": "empty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 700,
+        "y": 240,
+        "wires": [
+            [
+                "b79574ad.41f42",
+                "1baf2b2a.bf27c5"
+            ],
+            [
+                "f2b72a45.73c748",
+                "1baf2b2a.bf27c5"
+            ],
+            [
+                "f2b72a45.73c748"
+            ]
+        ]
+    },
+    {
+        "id": "2605fd83.f90db2",
+        "type": "change",
+        "z": "ece5e39f.8a0c58",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "isPlayingEverywhere",
+                "pt": "flow",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1400,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1f1c4606.87aca2",
+        "type": "change",
+        "z": "ece5e39f.8a0c58",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "isPlayingEverywhere",
+                "pt": "flow",
+                "to": "false",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1400,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b79574ad.41f42",
+        "type": "api-call-service",
+        "z": "ece5e39f.8a0c58",
+        "name": "Unjoin Sonos",
+        "server": "6dd794ce.66414c",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "sonos",
+        "service": "unjoin",
+        "entityId": "",
+        "data": "{\"entity_id\":[\"media_player.bedroom\",\"media_player.bathroom\"]}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 980,
+        "y": 220,
+        "wires": [
+            [
+                "1f1c4606.87aca2",
+                "1baf2b2a.bf27c5"
+            ]
+        ]
+    },
+    {
+        "id": "1baf2b2a.bf27c5",
+        "type": "debug",
+        "z": "ece5e39f.8a0c58",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 1320,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "4146ee18.271a1",
+        "type": "function",
+        "z": "ece5e39f.8a0c58",
+        "name": "",
+        "func": "if (typeof flow.get('isPlayingEverywhere') === 'undefined') {\n    flow.set('isPlayingEverywhere', false);\n}\n\nconsole.log(`isPlayingEverywhere: ${flow.get('isPlayingEverywhere')}`)",
+        "outputs": 0,
+        "noerr": 0,
+        "x": 430,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "2f78feb4.7191b2",
+        "type": "time-range-switch",
+        "z": "b8e2ec17.d1eb2",
+        "name": "Is it morning?",
+        "lat": "51.50723",
+        "lon": "-0.09818",
+        "startTime": "06:00",
+        "endTime": "10:00",
+        "startOffset": 0,
+        "endOffset": "0",
+        "x": 340,
+        "y": 300,
+        "wires": [
+            [
+                "b3c704da.5c4038"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "460e28b1.fff558",
+        "type": "time-range-switch",
+        "z": "b8e2ec17.d1eb2",
+        "name": "Is it evening?",
+        "lat": "51.50723",
+        "lon": "-0.09818",
+        "startTime": "16:00",
+        "endTime": "03:00",
+        "startOffset": 0,
+        "endOffset": "0",
+        "x": 350,
+        "y": 460,
+        "wires": [
+            [
+                "c03f6213.95c2b",
+                "83d067f1.2acf5",
+                "d14720a7.febd2",
+                "a07e5bcb.199618"
+            ],
+            []
+        ]
+    }
+]
