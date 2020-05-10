@@ -1,7 +1,10 @@
-smart-home-automations
-======================
+Luke's Node-RED config
+---
 
-### About
+![Example](./screenshot.png)
 
-This is your project's README.md file. It helps users understand what your
-project does, how to use it and anything else they may need to know.
+This is a Node Red project containing flows to control:
+
+- Lights
+- Fan controls
+- Time-based automated actions, e.g. starting the robot vaccuum.
