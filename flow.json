@@ -117,6 +117,30 @@
         }
     },
     {
+        "id": "a0c675672e48bb86",
+        "type": "junction",
+        "z": "8e58ee44.a4437",
+        "x": 1500,
+        "y": 500,
+        "wires": [
+            [
+                "830064fc.dc1e"
+            ]
+        ]
+    },
+    {
+        "id": "5e72e4ec7a38dbd8",
+        "type": "junction",
+        "z": "8e58ee44.a4437",
+        "x": 1500,
+        "y": 260,
+        "wires": [
+            [
+                "830064fc.dc1e"
+            ]
+        ]
+    },
+    {
         "id": "9cbaa593.a5001",
         "type": "mqtt-broker",
         "name": "Mosquitto",
@@ -453,7 +477,7 @@
         "y": 260,
         "wires": [
             [
-                "830064fc.dc1e"
+                "5e72e4ec7a38dbd8"
             ]
         ]
     },
@@ -767,7 +791,7 @@
         "y": 500,
         "wires": [
             [
-                "830064fc.dc1e"
+                "a0c675672e48bb86"
             ]
         ]
     },
