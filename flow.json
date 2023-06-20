@@ -2,7 +2,7 @@
     {
         "id": "8e58ee44.a4437",
         "type": "tab",
-        "label": "Light Switches",
+        "label": "Lights 🔆",
         "disabled": false,
         "info": ""
     },
@@ -789,6 +789,16 @@
                 "abb0f85d.6d1948"
             ]
         ]
+    },
+    {
+        "id": "e9a98646cee7b0a1",
+        "type": "comment",
+        "z": "8e58ee44.a4437",
+        "name": "All of the light controls are bound to their individual light / light group. These automations are additive, allowing long-press functions, turning lights on when doors open, etc.",
+        "info": "",
+        "x": 1010,
+        "y": 80,
+        "wires": []
     },
     {
         "id": "194846e5.9d6a81",
