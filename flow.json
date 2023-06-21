@@ -842,9 +842,9 @@
         "id": "e9a98646cee7b0a1",
         "type": "comment",
         "z": "8e58ee44.a4437",
-        "name": "All of the light controls are bound to their individual light / light group. These automations are additive, allowing long-press functions, turning lights on when doors open, etc.",
-        "info": "",
-        "x": 1010,
+        "name": "All of the light controls are bound to their individual light / light group.\\n These automations are additive, allowing long-press functions, turning lights on when doors open, etc.",
+        "info": "All of the light controls are bound to their individual light / light group.\\n\nThese automations are additive, allowing long-press functions, turning lights on when doors open, etc.",
+        "x": 790,
         "y": 80,
         "wires": []
     },
