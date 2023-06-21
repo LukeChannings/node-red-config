@@ -9,28 +9,28 @@
     {
         "id": "b8e2ec17.d1eb2",
         "type": "tab",
-        "label": "Timers",
+        "label": "Timers ⏱️",
         "disabled": false,
         "info": ""
     },
     {
         "id": "434c5286.7d68a4",
         "type": "tab",
-        "label": "Storage Cupboard Light",
+        "label": "Server Room Door 🚪",
         "disabled": false,
         "info": ""
     },
     {
         "id": "3bad2ed8.06947a",
         "type": "tab",
-        "label": "Bathroom fans",
+        "label": "Bathroom fans 💨",
         "disabled": false,
         "info": ""
     },
     {
         "id": "ece5e39f.8a0c58",
         "type": "tab",
-        "label": "Magic Cube",
+        "label": "Magic Cube 🪄",
         "disabled": false,
         "info": ""
     },
@@ -1786,6 +1786,8 @@
         "qos": "2",
         "datatype": "json",
         "broker": "9cbaa593.a5001",
+        "nl": false,
+        "rap": false,
         "inputs": 0,
         "x": 170,
         "y": 280,
