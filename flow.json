@@ -801,7 +801,8 @@
         "y": 340,
         "wires": [
             [
-                "4a82b6a6a3ceaa23"
+                "4a82b6a6a3ceaa23",
+                "7434aea526974c7b"
             ],
             []
         ]
@@ -834,32 +835,30 @@
         ]
     },
     {
-        "id": "c8f1da188e171760",
-        "type": "inject",
+        "id": "7434aea526974c7b",
+        "type": "api-call-service",
         "z": "b8e2ec17.d1eb2",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
+        "name": "Close Office blinds",
+        "server": "6dd794ce.66414c",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "cover",
+        "service": "close_cover",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "cover.office_blinds"
         ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 120,
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 330,
         "y": 400,
         "wires": [
-            [
-                "4a82b6a6a3ceaa23"
-            ]
+            []
         ]
     },
     {
