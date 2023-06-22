@@ -696,7 +696,7 @@
         "template": "{% if is_state('person.luke_channings', 'home') %}\nLuke is home.\n{% else %}\nLuke is out.\n{% endif %}\n\n{% if is_state('person.victoria_sluka', 'home') %}\nToria is home.\n{% else %}\nToria is out.\n{% endif %}",
         "resultsLocation": "payload",
         "resultsLocationType": "msg",
-        "templateLocation": "template",
+        "templateLocation": "payload.content",
         "templateLocationType": "msg",
         "x": 160,
         "y": 200,
@@ -715,10 +715,6 @@
         "props": [
             {
                 "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
             }
         ],
         "repeat": "",
@@ -726,9 +722,9 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 100,
+        "payload": "{\"type\":\"message\",\"chatId\":\"450224192\"}",
+        "payloadType": "json",
+        "x": 90,
         "y": 160,
         "wires": [
             [
