@@ -1833,7 +1833,7 @@
         "halt_if": "",
         "halt_if_type": "str",
         "halt_if_compare": "is",
-        "entity_id": "vacuum.kreacher",
+        "entity_id": "vacuum.valetudo_kreacher",
         "state_type": "str",
         "blockInputOverrides": false,
         "outputProperties": [
@@ -1910,34 +1910,28 @@
             },
             {
                 "t": "eq",
-                "v": "returning",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
                 "v": "cleaning",
                 "vt": "str"
             },
             {
-                "t": "eq",
-                "v": "error",
-                "vt": "str"
+                "t": "else"
             }
         ],
         "checkall": "true",
         "repair": false,
-        "outputs": 4,
+        "outputs": 3,
         "x": 830,
         "y": 300,
         "wires": [
             [
                 "4ce72fe254512302"
             ],
-            [],
             [
                 "36a6f1c8544b0a48"
             ],
-            []
+            [
+                "72546661256f86f2"
+            ]
         ]
     },
     {
@@ -1953,7 +1947,7 @@
         "areaId": [],
         "deviceId": [],
         "entityId": [
-            "vacuum.kreacher"
+            "vacuum.valetudo_kreacher"
         ],
         "data": "",
         "dataType": "jsonata",
@@ -1962,7 +1956,7 @@
         "outputProperties": [],
         "queue": "none",
         "x": 1120,
-        "y": 280,
+        "y": 260,
         "wires": [
             []
         ]
@@ -1980,7 +1974,7 @@
         "areaId": [],
         "deviceId": [],
         "entityId": [
-            "vacuum.kreacher"
+            "vacuum.valetudo_kreacher"
         ],
         "data": "",
         "dataType": "jsonata",
@@ -1989,9 +1983,25 @@
         "outputProperties": [],
         "queue": "none",
         "x": 1120,
-        "y": 340,
+        "y": 320,
         "wires": [
             []
         ]
+    },
+    {
+        "id": "72546661256f86f2",
+        "type": "debug",
+        "z": "ece5e39f.8a0c58",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1100,
+        "y": 380,
+        "wires": []
     }
 ]
