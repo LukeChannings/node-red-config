@@ -144,8 +144,8 @@
         "id": "f6c867fb11af81ed",
         "type": "junction",
         "z": "434c5286.7d68a4",
-        "x": 1400,
-        "y": 360,
+        "x": 1140,
+        "y": 220,
         "wires": [
             [
                 "59b81e0c.6c378"
@@ -156,8 +156,8 @@
         "id": "c0b6785cdc85f7cd",
         "type": "junction",
         "z": "434c5286.7d68a4",
-        "x": 1400,
-        "y": 320,
+        "x": 1140,
+        "y": 180,
         "wires": [
             [
                 "59b81e0c.6c378"
@@ -1237,16 +1237,6 @@
         ]
     },
     {
-        "id": "64ff7951.27f0c",
-        "type": "comment",
-        "z": "b8e2ec17.d1eb2",
-        "name": "Turn lights on when someone enters.",
-        "info": "",
-        "x": 180,
-        "y": 720,
-        "wires": []
-    },
-    {
         "id": "2f78feb4.7191b2",
         "type": "time-range-switch",
         "z": "b8e2ec17.d1eb2",
@@ -1301,8 +1291,8 @@
         "nl": false,
         "rap": false,
         "inputs": 0,
-        "x": 390,
-        "y": 340,
+        "x": 130,
+        "y": 200,
         "wires": [
             [
                 "36b096c9.0c49aa"
@@ -1327,8 +1317,8 @@
         "checkall": "false",
         "repair": false,
         "outputs": 2,
-        "x": 600,
-        "y": 340,
+        "x": 340,
+        "y": 200,
         "wires": [
             [
                 "ad4071c3.104d18"
@@ -1347,8 +1337,8 @@
         "qos": "1",
         "retain": "false",
         "broker": "9cbaa593.a5001",
-        "x": 1560,
-        "y": 340,
+        "x": 1300,
+        "y": 200,
         "wires": []
     },
     {
@@ -1384,8 +1374,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1100,
-        "y": 360,
+        "x": 840,
+        "y": 220,
         "wires": [
             [
                 "f6c867fb11af81ed"
@@ -1425,8 +1415,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1100,
-        "y": 320,
+        "x": 840,
+        "y": 180,
         "wires": [
             [
                 "3b39dbba.81c184"
@@ -1448,8 +1438,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 870,
-        "y": 320,
+        "x": 610,
+        "y": 180,
         "wires": [
             [
                 "ef1b1d07.55dfd8"
@@ -1472,8 +1462,8 @@
         "randomUnits": "seconds",
         "drop": false,
         "outputs": 1,
-        "x": 1300,
-        "y": 320,
+        "x": 1040,
+        "y": 180,
         "wires": [
             [
                 "c0b6785cdc85f7cd"
@@ -1497,8 +1487,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 860,
-        "y": 360,
+        "x": 600,
+        "y": 220,
         "wires": [
             [
                 "3f9b1207.2306ee"
