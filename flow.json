@@ -1821,19 +1821,19 @@
         "y": 180,
         "wires": [
             [
-                "d616035ad8e9156d"
+                "2965267480b89fb0"
             ],
             [
-                "f540bc58ecbae335"
+                "2747ebb11f6b2b61"
             ],
             [
-                "d616035ad8e9156d"
+                "2965267480b89fb0"
             ],
             [
-                "3b519566f76b617c"
+                "2965267480b89fb0"
             ],
             [
-                "3b519566f76b617c"
+                "8def6b6f3d539685"
             ],
             [
                 "72546661256f86f2"
@@ -2039,6 +2039,132 @@
         "wires": [
             [
                 "f70d2cd04cb68afc"
+            ]
+        ]
+    },
+    {
+        "id": "e268b472013cb294",
+        "type": "mqtt out",
+        "z": "ece5e39f.8a0c58",
+        "name": "Send command to Kreacher",
+        "topic": "valetudo/kreacher/BasicControlCapability/operation/set",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "9cbaa593.a5001",
+        "x": 1380,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "2965267480b89fb0",
+        "type": "change",
+        "z": "ece5e39f.8a0c58",
+        "name": "Start",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "START",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1070,
+        "y": 480,
+        "wires": [
+            [
+                "e268b472013cb294"
+            ]
+        ]
+    },
+    {
+        "id": "8633e2261256b505",
+        "type": "change",
+        "z": "ece5e39f.8a0c58",
+        "name": "Stop",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "STOP",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1070,
+        "y": 520,
+        "wires": [
+            [
+                "e268b472013cb294"
+            ]
+        ]
+    },
+    {
+        "id": "2747ebb11f6b2b61",
+        "type": "change",
+        "z": "ece5e39f.8a0c58",
+        "name": "Pause",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "PAUSE",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1070,
+        "y": 560,
+        "wires": [
+            [
+                "e268b472013cb294"
+            ]
+        ]
+    },
+    {
+        "id": "8def6b6f3d539685",
+        "type": "change",
+        "z": "ece5e39f.8a0c58",
+        "name": "Home",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "HOME",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1070,
+        "y": 600,
+        "wires": [
+            [
+                "e268b472013cb294"
             ]
         ]
     }
