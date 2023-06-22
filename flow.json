@@ -1862,7 +1862,7 @@
         "y": 300,
         "wires": [
             [
-                "3b3f3da402d3fa43"
+                "f70d2cd04cb68afc"
             ]
         ]
     },
@@ -1896,19 +1896,102 @@
         ]
     },
     {
-        "id": "3b3f3da402d3fa43",
-        "type": "debug",
+        "id": "f70d2cd04cb68afc",
+        "type": "switch",
         "z": "ece5e39f.8a0c58",
-        "name": "debug 1",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 780,
+        "name": "Inspect Kreacher's state",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "docked",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "returning",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "cleaning",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "error",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 4,
+        "x": 830,
         "y": 300,
-        "wires": []
+        "wires": [
+            [
+                "4ce72fe254512302"
+            ],
+            [],
+            [
+                "36a6f1c8544b0a48"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "4ce72fe254512302",
+        "type": "api-call-service",
+        "z": "ece5e39f.8a0c58",
+        "name": "",
+        "server": "6dd794ce.66414c",
+        "version": 5,
+        "debugenabled": true,
+        "domain": "vacuum",
+        "service": "turn_on",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "vacuum.kreacher"
+        ],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 1120,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "36a6f1c8544b0a48",
+        "type": "api-call-service",
+        "z": "ece5e39f.8a0c58",
+        "name": "",
+        "server": "6dd794ce.66414c",
+        "version": 5,
+        "debugenabled": true,
+        "domain": "vacuum",
+        "service": "return_to_base",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "vacuum.kreacher"
+        ],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 1150,
+        "y": 340,
+        "wires": [
+            []
+        ]
     }
 ]
