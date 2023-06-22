@@ -51,34 +51,6 @@
         "env": []
     },
     {
-        "id": "e88800ac.be03b8",
-        "type": "subflow",
-        "name": "Anybody home?",
-        "info": "",
-        "category": "",
-        "in": [
-            {
-                "x": 40,
-                "y": 100,
-                "wires": []
-            }
-        ],
-        "out": [
-            {
-                "x": 440,
-                "y": 140,
-                "wires": []
-            }
-        ],
-        "env": [],
-        "color": "#DDAA99",
-        "status": {
-            "x": 440,
-            "y": 80,
-            "wires": []
-        }
-    },
-    {
         "id": "a0c675672e48bb86",
         "type": "junction",
         "z": "8e58ee44.a4437",
@@ -134,8 +106,10 @@
         "port": "1883",
         "tls": "",
         "clientid": "",
+        "autoConnect": true,
         "usetls": false,
         "compatmode": false,
+        "protocolVersion": 4,
         "keepalive": "60",
         "cleansession": true,
         "birthTopic": "node-red",
@@ -160,6 +134,31 @@
         "ha_boolean": "y|yes|true|on|home|open",
         "connectionDelay": true,
         "cacheJson": true
+    },
+    {
+        "id": "7ddcde404cad3973",
+        "type": "telegram bot",
+        "botname": "@LukeChanningsUptimeKumaBot",
+        "usernames": "",
+        "chatids": "",
+        "baseapiurl": "",
+        "updatemode": "polling",
+        "pollinterval": "300",
+        "usesocks": false,
+        "sockshost": "",
+        "socksprotocol": "socks5",
+        "socksport": "6667",
+        "socksusername": "anonymous",
+        "sockspassword": "",
+        "bothost": "",
+        "botpath": "",
+        "localbotport": "8443",
+        "publicbotport": "8443",
+        "privatekey": "",
+        "certificate": "",
+        "useselfsignedcertificate": false,
+        "sslterminated": false,
+        "verboselogging": true
     },
     {
         "id": "c3ff21f5.f8eb58",
@@ -647,6 +646,21 @@
         ]
     },
     {
+        "id": "ec9c92ab20cf9594",
+        "type": "telegram sender",
+        "z": "8e58ee44.a4437",
+        "name": "Terrence",
+        "bot": "7ddcde404cad3973",
+        "haserroroutput": true,
+        "outputs": 2,
+        "x": 480,
+        "y": 700,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
         "id": "9356eb6e.ee585",
         "type": "comment",
         "z": "b8e2ec17.d1eb2",
@@ -688,7 +702,8 @@
         "y": 200,
         "wires": [
             [
-                "2d9abb3cdf6b1bed"
+                "2d9abb3cdf6b1bed",
+                "d733cc241e1ae14e"
             ]
         ]
     },
@@ -719,6 +734,21 @@
             [
                 "3b4db96e6bf2acae"
             ]
+        ]
+    },
+    {
+        "id": "d733cc241e1ae14e",
+        "type": "telegram sender",
+        "z": "b8e2ec17.d1eb2",
+        "name": "Terrence",
+        "bot": "7ddcde404cad3973",
+        "haserroroutput": true,
+        "outputs": 2,
+        "x": 400,
+        "y": 260,
+        "wires": [
+            [],
+            []
         ]
     },
     {
