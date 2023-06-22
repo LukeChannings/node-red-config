@@ -745,7 +745,7 @@
         "z": "b8e2ec17.d1eb2",
         "name": "Test",
         "bot": "7ddcde404cad3973",
-        "event": "inline_query",
+        "event": "my_chat_member",
         "autoanswer": false,
         "x": 110,
         "y": 360,
