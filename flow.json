@@ -656,12 +656,12 @@
         "server": "6dd794ce.66414c",
         "version": 0,
         "template": "{% if is_state('person.luke_channings', 'home') %}\nLuke is home.\n{% else %}\nLuke is out.\n{% endif %}\n\n{% if is_state('person.victoria_sluka', 'home') %}\nToria is home.\n{% else %}\nToria is out.\n{% endif %}",
-        "resultsLocation": "",
-        "resultsLocationType": "none",
-        "templateLocation": "payload.content",
+        "resultsLocation": "payload.content",
+        "resultsLocationType": "msg",
+        "templateLocation": "template",
         "templateLocationType": "msg",
-        "x": 160,
-        "y": 200,
+        "x": 260,
+        "y": 160,
         "wires": [
             [
                 "2d9abb3cdf6b1bed",
