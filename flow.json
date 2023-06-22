@@ -35,22 +35,6 @@
         "info": ""
     },
     {
-        "id": "9b41e9d4.08d7b8",
-        "type": "subflow",
-        "name": "Front door toggled?",
-        "info": "",
-        "category": "home_assistant",
-        "in": [],
-        "out": [
-            {
-                "x": 760,
-                "y": 340,
-                "wires": []
-            }
-        ],
-        "env": []
-    },
-    {
         "id": "a0c675672e48bb86",
         "type": "junction",
         "z": "8e58ee44.a4437",
@@ -159,28 +143,6 @@
         "useselfsignedcertificate": false,
         "sslterminated": false,
         "verboselogging": true
-    },
-    {
-        "id": "c3ff21f5.f8eb58",
-        "type": "delay",
-        "z": "9b41e9d4.08d7b8",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "3",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "outputs": 1,
-        "x": 380,
-        "y": 340,
-        "wires": [
-            []
-        ]
     },
     {
         "id": "830064fc.dc1e",
@@ -694,8 +656,8 @@
         "server": "6dd794ce.66414c",
         "version": 0,
         "template": "{% if is_state('person.luke_channings', 'home') %}\nLuke is home.\n{% else %}\nLuke is out.\n{% endif %}\n\n{% if is_state('person.victoria_sluka', 'home') %}\nToria is home.\n{% else %}\nToria is out.\n{% endif %}",
-        "resultsLocation": "payload",
-        "resultsLocationType": "msg",
+        "resultsLocation": "",
+        "resultsLocationType": "none",
         "templateLocation": "payload.content",
         "templateLocationType": "msg",
         "x": 160,
