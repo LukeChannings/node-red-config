@@ -626,7 +626,7 @@
         "id": "9356eb6e.ee585",
         "type": "comment",
         "z": "b8e2ec17.d1eb2",
-        "name": "Turn off all the lights when the apartment is empty.",
+        "name": "Send me a Telegram message when Toria gets home",
         "info": "",
         "x": 250,
         "y": 100,
@@ -728,6 +728,48 @@
                 "d733cc241e1ae14e"
             ]
         ]
+    },
+    {
+        "id": "527a9f42bb26a5e4",
+        "type": "comment",
+        "z": "b8e2ec17.d1eb2",
+        "name": "Turn off all the lights when the apartment is empty.",
+        "info": "",
+        "x": 250,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "df23d09e896c1de3",
+        "type": "telegram event",
+        "z": "b8e2ec17.d1eb2",
+        "name": "Test",
+        "bot": "7ddcde404cad3973",
+        "event": "channel_post",
+        "autoanswer": false,
+        "x": 110,
+        "y": 360,
+        "wires": [
+            [
+                "05a9edf0c36d0b4e"
+            ]
+        ]
+    },
+    {
+        "id": "05a9edf0c36d0b4e",
+        "type": "debug",
+        "z": "b8e2ec17.d1eb2",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 340,
+        "y": 360,
+        "wires": []
     },
     {
         "id": "5cf08f91.c3fec",
