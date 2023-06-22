@@ -1782,7 +1782,7 @@
         "type": "switch",
         "z": "ece5e39f.8a0c58",
         "name": "Inspect Kreacher's state",
-        "property": "payload",
+        "property": "payload.kreacher_state",
         "propertyType": "msg",
         "rules": [
             {
@@ -1817,8 +1817,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 6,
-        "x": 1070,
-        "y": 180,
+        "x": 810,
+        "y": 280,
         "wires": [
             [
                 "2965267480b89fb0"
@@ -1835,105 +1835,6 @@
             [
                 "8def6b6f3d539685"
             ],
-            [
-                "72546661256f86f2"
-            ]
-        ]
-    },
-    {
-        "id": "72546661256f86f2",
-        "type": "debug",
-        "z": "ece5e39f.8a0c58",
-        "name": "debug 1",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1340,
-        "y": 400,
-        "wires": []
-    },
-    {
-        "id": "d616035ad8e9156d",
-        "type": "api-call-service",
-        "z": "ece5e39f.8a0c58",
-        "name": "",
-        "server": "6dd794ce.66414c",
-        "version": 5,
-        "debugenabled": true,
-        "domain": "vacuum",
-        "service": "start",
-        "areaId": [],
-        "deviceId": [],
-        "entityId": [
-            "vacuum.valetudo_kreacher"
-        ],
-        "data": "",
-        "dataType": "jsonata",
-        "mergeContext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "x": 1350,
-        "y": 160,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "f540bc58ecbae335",
-        "type": "api-call-service",
-        "z": "ece5e39f.8a0c58",
-        "name": "",
-        "server": "6dd794ce.66414c",
-        "version": 5,
-        "debugenabled": true,
-        "domain": "vacuum",
-        "service": "pause",
-        "areaId": [],
-        "deviceId": [],
-        "entityId": [
-            "vacuum.valetudo_kreacher"
-        ],
-        "data": "",
-        "dataType": "jsonata",
-        "mergeContext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "x": 1360,
-        "y": 220,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "3b519566f76b617c",
-        "type": "api-call-service",
-        "z": "ece5e39f.8a0c58",
-        "name": "",
-        "server": "6dd794ce.66414c",
-        "version": 5,
-        "debugenabled": true,
-        "domain": "vacuum",
-        "service": "return_to_base",
-        "areaId": [],
-        "deviceId": [],
-        "entityId": [
-            "vacuum.valetudo_kreacher"
-        ],
-        "data": "",
-        "dataType": "jsonata",
-        "mergeContext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "x": 1390,
-        "y": 280,
-        "wires": [
             []
         ]
     },
@@ -1950,8 +1851,8 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 390,
-        "y": 180,
+        "x": 130,
+        "y": 280,
         "wires": [
             [
                 "190f3606e72df477"
@@ -1972,17 +1873,33 @@
                 "vt": "str"
             },
             {
+                "t": "eq",
+                "v": "rotate-left",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "rotate-right",
+                "vt": "str"
+            },
+            {
                 "t": "else"
             }
         ],
         "checkall": "true",
         "repair": false,
-        "outputs": 2,
-        "x": 590,
-        "y": 180,
+        "outputs": 4,
+        "x": 330,
+        "y": 280,
         "wires": [
             [
                 "3133fcf812436068"
+            ],
+            [
+                "39c5abbb91491d63"
+            ],
+            [
+                "39c5abbb91491d63"
             ],
             []
         ]
@@ -2000,8 +1917,8 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 400,
-        "y": 100,
+        "x": 140,
+        "y": 120,
         "wires": [
             [
                 "9a23bbb040aa44fa"
@@ -2019,8 +1936,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 650,
-        "y": 100,
+        "x": 390,
+        "y": 120,
         "wires": []
     },
     {
@@ -2028,14 +1945,14 @@
         "type": "function",
         "z": "ece5e39f.8a0c58",
         "name": "Get kreacher_state",
-        "func": "return {\n    payload: global.get('kreacher_state')\n}",
+        "func": "return {\n    payload: {\n        magic_cube_action: msg.payload,\n        kreacher_state: global.get('kreacher_state'),\n    }\n}",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 810,
-        "y": 180,
+        "x": 550,
+        "y": 280,
         "wires": [
             [
                 "f70d2cd04cb68afc"
@@ -2056,8 +1973,8 @@
         "correl": "",
         "expiry": "",
         "broker": "9cbaa593.a5001",
-        "x": 1380,
-        "y": 540,
+        "x": 1360,
+        "y": 280,
         "wires": []
     },
     {
@@ -2079,35 +1996,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1070,
-        "y": 480,
-        "wires": [
-            [
-                "e268b472013cb294"
-            ]
-        ]
-    },
-    {
-        "id": "8633e2261256b505",
-        "type": "change",
-        "z": "ece5e39f.8a0c58",
-        "name": "Stop",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "STOP",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 1070,
-        "y": 520,
+        "x": 1050,
+        "y": 240,
         "wires": [
             [
                 "e268b472013cb294"
@@ -2133,8 +2023,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1070,
-        "y": 560,
+        "x": 1050,
+        "y": 280,
         "wires": [
             [
                 "e268b472013cb294"
@@ -2160,12 +2050,57 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1070,
-        "y": 600,
+        "x": 1050,
+        "y": 320,
         "wires": [
             [
                 "e268b472013cb294"
             ]
         ]
+    },
+    {
+        "id": "6882c59b1f141fb6",
+        "type": "comment",
+        "z": "ece5e39f.8a0c58",
+        "name": "MQTT doesn't really have a way to \"get\" a value. \\n Instead we subscribe and store the current value ourselves.",
+        "info": "",
+        "x": 240,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "39c5abbb91491d63",
+        "type": "function",
+        "z": "ece5e39f.8a0c58",
+        "name": "Get kreacher_state",
+        "func": "return {\n    payload: {\n        magic_cube_action: msg.payload,\n        kreacher_state: global.get('kreacher_state'),\n    }\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 550,
+        "y": 400,
+        "wires": [
+            [
+                "1e4294808ef8ba8d"
+            ]
+        ]
+    },
+    {
+        "id": "1e4294808ef8ba8d",
+        "type": "debug",
+        "z": "ece5e39f.8a0c58",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 820,
+        "y": 400,
+        "wires": []
     }
 ]
