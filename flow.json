@@ -1778,79 +1778,6 @@
         ]
     },
     {
-        "id": "ce026ba5c29fd428",
-        "type": "api-current-state",
-        "z": "ece5e39f.8a0c58",
-        "name": "What's Kreacher doing?",
-        "server": "6dd794ce.66414c",
-        "version": 3,
-        "outputs": 1,
-        "halt_if": "",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "entity_id": "vacuum.valetudo_kreacher",
-        "state_type": "str",
-        "blockInputOverrides": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entity"
-            }
-        ],
-        "for": "0",
-        "forType": "num",
-        "forUnits": "minutes",
-        "override_topic": false,
-        "state_location": "payload",
-        "override_payload": "msg",
-        "entity_location": "data",
-        "override_data": "msg",
-        "x": 550,
-        "y": 300,
-        "wires": [
-            [
-                "f70d2cd04cb68afc"
-            ]
-        ]
-    },
-    {
-        "id": "013a2de6ad64f812",
-        "type": "inject",
-        "z": "ece5e39f.8a0c58",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 320,
-        "y": 300,
-        "wires": [
-            [
-                "ce026ba5c29fd428"
-            ]
-        ]
-    },
-    {
         "id": "f70d2cd04cb68afc",
         "type": "switch",
         "z": "ece5e39f.8a0c58",
@@ -1885,8 +1812,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 5,
-        "x": 830,
-        "y": 300,
+        "x": 1070,
+        "y": 180,
         "wires": [
             [
                 "d616035ad8e9156d"
@@ -1917,73 +1844,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1100,
-        "y": 460,
-        "wires": []
-    },
-    {
-        "id": "75fd36f8b080272a",
-        "type": "trigger-state",
-        "z": "ece5e39f.8a0c58",
-        "name": "When the magic cube shakes",
-        "server": "6dd794ce.66414c",
-        "version": 2,
-        "exposeToHomeAssistant": false,
-        "haConfig": [
-            {
-                "property": "name",
-                "value": ""
-            },
-            {
-                "property": "icon",
-                "value": ""
-            }
-        ],
-        "entityid": "sensor.magic_cube_action",
-        "entityidfiltertype": "exact",
-        "debugenabled": true,
-        "constraints": [
-            {
-                "targetType": "this_entity",
-                "targetValue": "",
-                "propertyType": "current_state",
-                "propertyValue": "new_state.state",
-                "comparatorType": "is",
-                "comparatorValueDatatype": "str",
-                "comparatorValue": "shake"
-            }
-        ],
-        "inputs": 0,
-        "outputs": 2,
-        "customoutputs": [],
-        "outputinitially": false,
-        "state_type": "str",
-        "enableInput": false,
-        "x": 240,
-        "y": 400,
-        "wires": [
-            [
-                "ce026ba5c29fd428"
-            ],
-            [
-                "49ecf90977a9b788"
-            ]
-        ]
-    },
-    {
-        "id": "49ecf90977a9b788",
-        "type": "debug",
-        "z": "ece5e39f.8a0c58",
-        "name": "debug 2",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 540,
-        "y": 420,
+        "x": 1340,
+        "y": 340,
         "wires": []
     },
     {
@@ -2007,8 +1869,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 1110,
-        "y": 280,
+        "x": 1350,
+        "y": 160,
         "wires": [
             []
         ]
@@ -2034,8 +1896,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 1120,
-        "y": 340,
+        "x": 1360,
+        "y": 220,
         "wires": [
             []
         ]
@@ -2061,8 +1923,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 1150,
-        "y": 400,
+        "x": 1390,
+        "y": 280,
         "wires": [
             []
         ]
@@ -2111,7 +1973,9 @@
         "x": 590,
         "y": 180,
         "wires": [
-            [],
+            [
+                "3133fcf812436068"
+            ],
             []
         ]
     },
@@ -2119,7 +1983,7 @@
         "id": "2d2a71db68c0a743",
         "type": "mqtt in",
         "z": "ece5e39f.8a0c58",
-        "name": "Kreacher state",
+        "name": "Subscribe to kreacher_state",
         "topic": "valetudo/kreacher/StatusStateAttribute/status",
         "qos": "2",
         "datatype": "utf8",
@@ -2128,7 +1992,7 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 360,
+        "x": 400,
         "y": 100,
         "wires": [
             [
@@ -2140,15 +2004,34 @@
         "id": "9a23bbb040aa44fa",
         "type": "function",
         "z": "ece5e39f.8a0c58",
-        "name": "Store Kreacher's state",
-        "func": "global.set('kreacher', msg.payload);",
+        "name": "Set kreacher_state",
+        "func": "global.set('kreacher_state', msg.payload);",
         "outputs": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 600,
+        "x": 650,
         "y": 100,
         "wires": []
+    },
+    {
+        "id": "3133fcf812436068",
+        "type": "function",
+        "z": "ece5e39f.8a0c58",
+        "name": "Get kreacher_state",
+        "func": "return {\n    payload: global.get('kreacher_state')\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 810,
+        "y": 180,
+        "wires": [
+            [
+                "f70d2cd04cb68afc"
+            ]
+        ]
     }
 ]
