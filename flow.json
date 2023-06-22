@@ -1809,14 +1809,11 @@
                 "t": "eq",
                 "v": "error",
                 "vt": "str"
-            },
-            {
-                "t": "else"
             }
         ],
         "checkall": "false",
         "repair": false,
-        "outputs": 6,
+        "outputs": 5,
         "x": 810,
         "y": 280,
         "wires": [
@@ -1834,8 +1831,7 @@
             ],
             [
                 "8def6b6f3d539685"
-            ],
-            []
+            ]
         ]
     },
     {
