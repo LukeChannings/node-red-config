@@ -145,6 +145,17 @@
         "verboselogging": true
     },
     {
+        "id": "9405c3fe.d0a6c",
+        "type": "server",
+        "name": "Home Assistant",
+        "addon": true
+    },
+    {
+        "id": "9c6d9a8c.1f52f8",
+        "type": "server",
+        "name": "Home Assistant"
+    },
+    {
         "id": "830064fc.dc1e",
         "type": "mqtt out",
         "z": "8e58ee44.a4437",
@@ -740,37 +751,125 @@
         "wires": []
     },
     {
-        "id": "df23d09e896c1de3",
-        "type": "telegram event",
+        "id": "2f36c4c102dd899a",
+        "type": "server-state-changed",
         "z": "b8e2ec17.d1eb2",
-        "name": "Test",
-        "bot": "7ddcde404cad3973",
-        "event": "my_chat_member",
-        "autoanswer": false,
-        "x": 110,
-        "y": 360,
+        "name": "We both leave",
+        "server": "6dd794ce.66414c",
+        "version": 4,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": [
+            "person.luke_channings",
+            "person.victoria_sluka"
+        ],
+        "entityidfiltertype": "list",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "not_home",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 130,
+        "y": 340,
         "wires": [
             [
-                "05a9edf0c36d0b4e"
-            ]
+                "4a82b6a6a3ceaa23"
+            ],
+            []
         ]
     },
     {
-        "id": "05a9edf0c36d0b4e",
-        "type": "debug",
+        "id": "4a82b6a6a3ceaa23",
+        "type": "api-call-service",
         "z": "b8e2ec17.d1eb2",
-        "name": "debug 1",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
+        "name": "Turn off all the lights",
+        "server": "6dd794ce.66414c",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "light",
+        "service": "turn_off",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
         "x": 340,
-        "y": 360,
-        "wires": []
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c8f1da188e171760",
+        "type": "inject",
+        "z": "b8e2ec17.d1eb2",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 400,
+        "wires": [
+            [
+                "4a82b6a6a3ceaa23"
+            ]
+        ]
     },
     {
         "id": "5cf08f91.c3fec",
