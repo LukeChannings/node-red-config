@@ -715,7 +715,7 @@
         "type": "template",
         "z": "b8e2ec17.d1eb2",
         "name": "Make a message",
-        "field": "payload.contents",
+        "field": "payload.content",
         "fieldType": "msg",
         "format": "handlebars",
         "syntax": "mustache",
