@@ -1814,7 +1814,7 @@
                 "t": "else"
             }
         ],
-        "checkall": "true",
+        "checkall": "false",
         "repair": false,
         "outputs": 6,
         "x": 810,
@@ -1871,38 +1871,16 @@
                 "t": "eq",
                 "v": "shake",
                 "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "rotate-left",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "rotate-right",
-                "vt": "str"
-            },
-            {
-                "t": "else"
             }
         ],
-        "checkall": "true",
+        "checkall": "false",
         "repair": false,
-        "outputs": 4,
-        "x": 330,
+        "outputs": 1,
+        "x": 350,
         "y": 280,
         "wires": [
             [
                 "3133fcf812436068"
-            ],
-            [
-                "39c5abbb91491d63"
-            ],
-            [
-                "39c5abbb91491d63"
-            ],
-            [
-                "39c5abbb91491d63"
             ]
         ]
     },
@@ -2068,41 +2046,6 @@
         "info": "",
         "x": 240,
         "y": 60,
-        "wires": []
-    },
-    {
-        "id": "39c5abbb91491d63",
-        "type": "function",
-        "z": "ece5e39f.8a0c58",
-        "name": "Get kreacher_state",
-        "func": "return {\n    payload: {\n        magic_cube_action: msg.payload,\n        kreacher_state: global.get('kreacher_state'),\n    }\n}",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 550,
-        "y": 400,
-        "wires": [
-            [
-                "1e4294808ef8ba8d"
-            ]
-        ]
-    },
-    {
-        "id": "1e4294808ef8ba8d",
-        "type": "debug",
-        "z": "ece5e39f.8a0c58",
-        "name": "debug 1",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 820,
-        "y": 400,
         "wires": []
     }
 ]
