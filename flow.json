@@ -633,51 +633,6 @@
         "wires": []
     },
     {
-        "id": "3b4db96e6bf2acae",
-        "type": "api-render-template",
-        "z": "b8e2ec17.d1eb2",
-        "name": "",
-        "server": "6dd794ce.66414c",
-        "version": 0,
-        "template": "{% if is_state('person.luke_channings', 'home') %}\nLuke is home.\n{% else %}\nLuke is out.\n{% endif %}\n\n{% if is_state('person.victoria_sluka', 'home') %}\nToria is home.\n{% else %}\nToria is out.\n{% endif %}",
-        "resultsLocation": "payload.content",
-        "resultsLocationType": "msg",
-        "templateLocation": "template",
-        "templateLocationType": "msg",
-        "x": 400,
-        "y": 160,
-        "wires": [
-            [
-                "d733cc241e1ae14e"
-            ]
-        ]
-    },
-    {
-        "id": "1bc41d96895c944b",
-        "type": "inject",
-        "z": "b8e2ec17.d1eb2",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "{\"type\":\"message\",\"chatId\":\"450224192\"}",
-        "payloadType": "json",
-        "x": 90,
-        "y": 160,
-        "wires": [
-            [
-                "3b4db96e6bf2acae"
-            ]
-        ]
-    },
-    {
         "id": "d733cc241e1ae14e",
         "type": "telegram sender",
         "z": "b8e2ec17.d1eb2",
@@ -750,9 +705,53 @@
         "y": 260,
         "wires": [
             [
-                "3b4db96e6bf2acae"
+                "b3deeb91eebee99e"
             ],
             []
+        ]
+    },
+    {
+        "id": "b3deeb91eebee99e",
+        "type": "template",
+        "z": "b8e2ec17.d1eb2",
+        "name": "Make a message",
+        "field": "payload.contents",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "Toria is home!",
+        "output": "str",
+        "x": 330,
+        "y": 160,
+        "wires": [
+            [
+                "d733cc241e1ae14e"
+            ]
+        ]
+    },
+    {
+        "id": "1bc41d96895c944b",
+        "type": "inject",
+        "z": "b8e2ec17.d1eb2",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"type\":\"message\",\"chatId\":\"450224192\"}",
+        "payloadType": "json",
+        "x": 90,
+        "y": 160,
+        "wires": [
+            [
+                "b3deeb91eebee99e"
+            ]
         ]
     },
     {
