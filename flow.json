@@ -1887,7 +1887,7 @@
                 "d616035ad8e9156d"
             ],
             [
-                "d616035ad8e9156d"
+                "f540bc58ecbae335"
             ],
             [
                 "d616035ad8e9156d"
@@ -1987,10 +1987,39 @@
         "version": 5,
         "debugenabled": true,
         "domain": "vacuum",
-        "service": "toggle",
+        "service": "start",
         "areaId": [],
         "deviceId": [],
-        "entityId": [],
+        "entityId": [
+            "vacuum.valetudo_kreacher"
+        ],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 1110,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f540bc58ecbae335",
+        "type": "api-call-service",
+        "z": "ece5e39f.8a0c58",
+        "name": "",
+        "server": "6dd794ce.66414c",
+        "version": 5,
+        "debugenabled": true,
+        "domain": "vacuum",
+        "service": "pause",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "vacuum.valetudo_kreacher"
+        ],
         "data": "",
         "dataType": "jsonata",
         "mergeContext": "",
@@ -1998,7 +2027,7 @@
         "outputProperties": [],
         "queue": "none",
         "x": 1120,
-        "y": 300,
+        "y": 360,
         "wires": [
             []
         ]
