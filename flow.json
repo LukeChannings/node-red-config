@@ -819,7 +819,7 @@
         "areaId": [],
         "deviceId": [],
         "entityId": [
-            "light.*"
+            "all"
         ],
         "data": "",
         "dataType": "jsonata",
