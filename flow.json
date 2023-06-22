@@ -865,7 +865,7 @@
         "name": "",
         "server": "6dd794ce.66414c",
         "version": 0,
-        "template": "{% vacuum.kreacher %}",
+        "template": "{% if is_state('person.luke_channings', 'home') %}\nLuke is home.\n{% else %}\nLuke is out.\n{% endif %}\n\n{% if is_state('person.victoria_sluka', 'home') %}\nToria is home.\n{% else %}\nToria is out.\n{% endif %}",
         "resultsLocation": "payload",
         "resultsLocationType": "msg",
         "templateLocation": "template",
@@ -873,8 +873,26 @@
         "x": 160,
         "y": 200,
         "wires": [
-            []
+            [
+                "2d9abb3cdf6b1bed"
+            ]
         ]
+    },
+    {
+        "id": "2d9abb3cdf6b1bed",
+        "type": "debug",
+        "z": "b8e2ec17.d1eb2",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 380,
+        "y": 200,
+        "wires": []
     },
     {
         "id": "5cf08f91.c3fec",
