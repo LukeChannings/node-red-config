@@ -818,7 +818,9 @@
         "service": "turn_off",
         "areaId": [],
         "deviceId": [],
-        "entityId": [],
+        "entityId": [
+            "light.*"
+        ],
         "data": "",
         "dataType": "jsonata",
         "mergeContext": "",
