@@ -1976,7 +1976,7 @@
         "version": 5,
         "debugenabled": true,
         "domain": "vacuum",
-        "service": "return_to_base",
+        "service": "pause",
         "areaId": [],
         "deviceId": [],
         "entityId": [
@@ -1988,7 +1988,7 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 1150,
+        "x": 1120,
         "y": 340,
         "wires": [
             []
