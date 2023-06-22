@@ -1884,71 +1884,17 @@
         "y": 300,
         "wires": [
             [
-                "4ce72fe254512302"
+                "d616035ad8e9156d"
             ],
             [
-                "36a6f1c8544b0a48"
+                "d616035ad8e9156d"
             ],
             [
-                "4ce72fe254512302"
+                "d616035ad8e9156d"
             ],
             [
                 "72546661256f86f2"
             ]
-        ]
-    },
-    {
-        "id": "4ce72fe254512302",
-        "type": "api-call-service",
-        "z": "ece5e39f.8a0c58",
-        "name": "",
-        "server": "6dd794ce.66414c",
-        "version": 5,
-        "debugenabled": true,
-        "domain": "vacuum",
-        "service": "turn_on",
-        "areaId": [],
-        "deviceId": [],
-        "entityId": [
-            "vacuum.valetudo_kreacher"
-        ],
-        "data": "",
-        "dataType": "jsonata",
-        "mergeContext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "x": 1120,
-        "y": 260,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "36a6f1c8544b0a48",
-        "type": "api-call-service",
-        "z": "ece5e39f.8a0c58",
-        "name": "",
-        "server": "6dd794ce.66414c",
-        "version": 5,
-        "debugenabled": true,
-        "domain": "vacuum",
-        "service": "pause",
-        "areaId": [],
-        "deviceId": [],
-        "entityId": [
-            "vacuum.valetudo_kreacher"
-        ],
-        "data": "",
-        "dataType": "jsonata",
-        "mergeContext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "x": 1120,
-        "y": 320,
-        "wires": [
-            []
         ]
     },
     {
@@ -2031,5 +1977,32 @@
         "x": 540,
         "y": 420,
         "wires": []
+    },
+    {
+        "id": "d616035ad8e9156d",
+        "type": "api-call-service",
+        "z": "ece5e39f.8a0c58",
+        "name": "",
+        "server": "6dd794ce.66414c",
+        "version": 5,
+        "debugenabled": true,
+        "domain": "vacuum",
+        "service": "start_pause",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "vacuum.valetudo_kreacher"
+        ],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 1140,
+        "y": 300,
+        "wires": [
+            []
+        ]
     }
 ]
