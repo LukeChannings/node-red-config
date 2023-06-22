@@ -1833,9 +1833,11 @@
         "version": 5,
         "debugenabled": true,
         "domain": "vacuum",
-        "service": "start",
+        "service": "turn_on",
         "areaId": [],
-        "deviceId": [],
+        "deviceId": [
+            "abfc26510cd7ac02bc1d04b11fb42390"
+        ],
         "entityId": [
             "vacuum.kreacher"
         ],
