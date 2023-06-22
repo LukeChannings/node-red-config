@@ -701,8 +701,8 @@
                 "valueType": "triggerId"
             }
         ],
-        "x": 130,
-        "y": 260,
+        "x": 150,
+        "y": 160,
         "wires": [
             [
                 "b3deeb91eebee99e"
@@ -721,36 +721,11 @@
         "syntax": "mustache",
         "template": "Toria is home!",
         "output": "str",
-        "x": 330,
+        "x": 390,
         "y": 160,
         "wires": [
             [
                 "d733cc241e1ae14e"
-            ]
-        ]
-    },
-    {
-        "id": "1bc41d96895c944b",
-        "type": "inject",
-        "z": "b8e2ec17.d1eb2",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "{\"type\":\"message\",\"chatId\":\"450224192\"}",
-        "payloadType": "json",
-        "x": 90,
-        "y": 160,
-        "wires": [
-            [
-                "b3deeb91eebee99e"
             ]
         ]
     },
