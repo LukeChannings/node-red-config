@@ -145,17 +145,6 @@
         "verboselogging": true
     },
     {
-        "id": "9405c3fe.d0a6c",
-        "type": "server",
-        "name": "Home Assistant",
-        "addon": true
-    },
-    {
-        "id": "9c6d9a8c.1f52f8",
-        "type": "server",
-        "name": "Home Assistant"
-    },
-    {
         "id": "830064fc.dc1e",
         "type": "mqtt out",
         "z": "8e58ee44.a4437",
