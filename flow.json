@@ -1551,7 +1551,7 @@
             }
         ],
         "x": 140,
-        "y": 300,
+        "y": 100,
         "wires": [
             [
                 "5e8c6586.daf1dc"
@@ -1579,7 +1579,7 @@
         "repair": false,
         "outputs": 2,
         "x": 440,
-        "y": 300,
+        "y": 100,
         "wires": [
             [
                 "89df99a4.71905"
@@ -1613,7 +1613,7 @@
         "output_location": "",
         "output_location_type": "none",
         "x": 740,
-        "y": 340,
+        "y": 140,
         "wires": [
             []
         ]
@@ -1642,7 +1642,7 @@
         "output_location": "",
         "output_location_type": "none",
         "x": 740,
-        "y": 260,
+        "y": 60,
         "wires": [
             []
         ]
@@ -1687,7 +1687,7 @@
             }
         ],
         "x": 130,
-        "y": 520,
+        "y": 320,
         "wires": [
             [
                 "f8d1eed0.f4e76"
@@ -1715,7 +1715,7 @@
         "repair": false,
         "outputs": 2,
         "x": 440,
-        "y": 520,
+        "y": 320,
         "wires": [
             [
                 "28fc0978.160256"
@@ -1749,7 +1749,7 @@
         "output_location": "",
         "output_location_type": "none",
         "x": 740,
-        "y": 560,
+        "y": 360,
         "wires": [
             []
         ]
@@ -1778,90 +1778,10 @@
         "output_location": "",
         "output_location_type": "none",
         "x": 740,
-        "y": 480,
+        "y": 280,
         "wires": [
             []
         ]
-    },
-    {
-        "id": "3471e2ddd59a8d13",
-        "type": "server-state-changed",
-        "z": "3bad2ed8.06947a",
-        "name": "En-suite fan state changed",
-        "server": "6dd794ce.66414c",
-        "version": 4,
-        "exposeToHomeAssistant": false,
-        "haConfig": [
-            {
-                "property": "name",
-                "value": ""
-            },
-            {
-                "property": "icon",
-                "value": ""
-            }
-        ],
-        "entityidfilter": "fan.en_suite_fan",
-        "entityidfiltertype": "exact",
-        "outputinitially": false,
-        "state_type": "str",
-        "haltifstate": "",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "outputs": 1,
-        "output_only_on_state_change": true,
-        "for": "0",
-        "forType": "num",
-        "forUnits": "minutes",
-        "ignorePrevStateNull": false,
-        "ignorePrevStateUnknown": false,
-        "ignorePrevStateUnavailable": false,
-        "ignoreCurrentStateUnknown": false,
-        "ignoreCurrentStateUnavailable": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "eventData"
-            },
-            {
-                "property": "topic",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "triggerId"
-            }
-        ],
-        "x": 130,
-        "y": 80,
-        "wires": [
-            [
-                "ebf97d4e0fb7d86c"
-            ]
-        ]
-    },
-    {
-        "id": "ebf97d4e0fb7d86c",
-        "type": "debug",
-        "z": "3bad2ed8.06947a",
-        "name": "debug 1",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 360,
-        "y": 80,
-        "wires": []
     },
     {
         "id": "f70d2cd04cb68afc",
