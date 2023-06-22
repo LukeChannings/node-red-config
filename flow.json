@@ -1778,341 +1778,77 @@
         ]
     },
     {
-        "id": "beb301c8.25242",
-        "type": "mqtt in",
+        "id": "75fd36f8b080272a",
+        "type": "trigger-state",
         "z": "ece5e39f.8a0c58",
-        "name": "Something magic happened?",
-        "topic": "zigbee2mqtt/magic_cube",
-        "qos": "2",
-        "datatype": "json",
-        "broker": "9cbaa593.a5001",
-        "nl": false,
-        "rap": false,
+        "name": "When the magic cube shakes",
+        "server": "6dd794ce.66414c",
+        "version": 2,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityid": "sensor.magic_cube_action",
+        "entityidfiltertype": "exact",
+        "debugenabled": true,
+        "constraints": [
+            {
+                "targetType": "this_entity",
+                "targetValue": "",
+                "propertyType": "current_state",
+                "propertyValue": "new_state.state",
+                "comparatorType": "is",
+                "comparatorValueDatatype": "str",
+                "comparatorValue": "shake"
+            }
+        ],
         "inputs": 0,
-        "x": 170,
-        "y": 280,
+        "outputs": 2,
+        "customoutputs": [],
+        "outputinitially": false,
+        "state_type": "str",
+        "enableInput": false,
+        "x": 240,
+        "y": 400,
         "wires": [
             [
-                "763954c0.a13164"
-            ]
-        ]
-    },
-    {
-        "id": "763954c0.a13164",
-        "type": "switch",
-        "z": "ece5e39f.8a0c58",
-        "name": "The cube moved!",
-        "property": "payload.action",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "shake",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "flip90",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "flip180",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "slide",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "rotate_right",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "rotate_left",
-                "vt": "str"
-            }
-        ],
-        "checkall": "false",
-        "repair": false,
-        "outputs": 6,
-        "x": 470,
-        "y": 280,
-        "wires": [
-            [
-                "1e3704c3.985be3"
+                "048b9e543465083f"
             ],
-            [],
-            [],
-            [],
-            [],
             []
         ]
     },
     {
-        "id": "258ad352.ba1fe4",
-        "type": "mqtt out",
+        "id": "048b9e543465083f",
+        "type": "api-call-service",
         "z": "ece5e39f.8a0c58",
-        "name": "Let's do some magic back!",
-        "topic": "",
-        "qos": "",
-        "retain": "",
-        "broker": "9cbaa593.a5001",
-        "x": 1320,
-        "y": 340,
-        "wires": []
-    },
-    {
-        "id": "881dce3b.1a2778",
-        "type": "change",
-        "z": "ece5e39f.8a0c58",
-        "name": "Hoover office floor",
-        "rules": [
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "valetudo/kreacher/custom_command",
-                "tot": "str"
-            },
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "{\"command\":\"zoned_cleanup\",\"zone_ids\":[\"Office\"]}",
-                "tot": "json"
-            }
+        "name": "Start Kreacher",
+        "server": "6dd794ce.66414c",
+        "version": 5,
+        "debugenabled": true,
+        "domain": "vacuum",
+        "service": "start",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "vacuum.kreacher"
         ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 830,
-        "y": 380,
-        "wires": [
-            [
-                "258ad352.ba1fe4"
-            ]
-        ]
-    },
-    {
-        "id": "1e3704c3.985be3",
-        "type": "change",
-        "z": "ece5e39f.8a0c58",
-        "name": "Hoover everywhere",
-        "rules": [
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "valetudo/kreacher/command",
-                "tot": "str"
-            },
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "{\"command\":\"start\"}",
-                "tot": "json"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 830,
-        "y": 180,
-        "wires": [
-            [
-                "258ad352.ba1fe4"
-            ]
-        ]
-    },
-    {
-        "id": "2db915d0.ffc92a",
-        "type": "change",
-        "z": "ece5e39f.8a0c58",
-        "name": "Open Blinds",
-        "rules": [
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "zigbee2mqtt/office_blinds/set",
-                "tot": "str"
-            },
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "{\"position\": 100}",
-                "tot": "json"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 810,
-        "y": 340,
-        "wires": [
-            [
-                "258ad352.ba1fe4"
-            ]
-        ]
-    },
-    {
-        "id": "ab379329.1766f8",
-        "type": "change",
-        "z": "ece5e39f.8a0c58",
-        "name": "Close Blinds",
-        "rules": [
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "zigbee2mqtt/office_blinds/set",
-                "tot": "str"
-            },
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "{\"position\": 0}",
-                "tot": "json"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 810,
-        "y": 500,
-        "wires": [
-            [
-                "258ad352.ba1fe4"
-            ]
-        ]
-    },
-    {
-        "id": "c9f35d29.0d1b78",
-        "type": "change",
-        "z": "ece5e39f.8a0c58",
-        "name": "Blinds 50%",
-        "rules": [
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "zigbee2mqtt/office_blinds/set",
-                "tot": "str"
-            },
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "{\"position\": 50}",
-                "tot": "json"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 810,
-        "y": 260,
-        "wires": [
-            [
-                "258ad352.ba1fe4"
-            ]
-        ]
-    },
-    {
-        "id": "91ec69e2.581548",
-        "type": "change",
-        "z": "ece5e39f.8a0c58",
-        "name": "Hoover office floor",
-        "rules": [
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "valetudo/kreacher/custom_command",
-                "tot": "str"
-            },
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "{\"command\":\"zoned_cleanup\",\"zone_ids\":[\"Office\"]}",
-                "tot": "json"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 830,
-        "y": 80,
-        "wires": [
-            [
-                "258ad352.ba1fe4"
-            ]
-        ]
-    },
-    {
-        "id": "b812b4d1.48cc6",
-        "type": "http request",
-        "z": "ece5e39f.8a0c58",
-        "name": "Send Spot Cleaning Request",
-        "method": "PUT",
-        "ret": "txt",
-        "paytoqs": "body",
-        "url": "http://192.168.20.6/api/v2/robot/capabilities/MapSegmentationCapability",
-        "tls": "",
-        "persist": false,
-        "proxy": "",
-        "authType": "",
-        "x": 1160,
-        "y": 560,
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 540,
+        "y": 400,
         "wires": [
             []
-        ]
-    },
-    {
-        "id": "c4a992ba.76cd18",
-        "type": "change",
-        "z": "ece5e39f.8a0c58",
-        "name": "Set Spot Cleaning Payload",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "{\"action\":\"start_segment_action\",\"segment_ids\":[\"17\",\"16\"],\"iterations\":1,\"customOrder\":true}",
-                "tot": "json"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 860,
-        "y": 560,
-        "wires": [
-            [
-                "b812b4d1.48cc6"
-            ]
         ]
     }
 ]
