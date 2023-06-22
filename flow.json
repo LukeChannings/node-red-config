@@ -200,65 +200,6 @@
         "cacheJson": true
     },
     {
-        "id": "8c84c35d.2d8c08",
-        "type": "server-state-changed",
-        "z": "9b41e9d4.08d7b8",
-        "name": "Entrance door open",
-        "server": "6dd794ce.66414c",
-        "version": 4,
-        "exposeToHomeAssistant": false,
-        "haConfig": [
-            {
-                "property": "name",
-                "value": ""
-            },
-            {
-                "property": "icon",
-                "value": ""
-            }
-        ],
-        "entityidfilter": "binary_sensor.entrance_contact",
-        "entityidfiltertype": "exact",
-        "outputinitially": false,
-        "state_type": "str",
-        "haltifstate": "on",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "outputs": 2,
-        "output_only_on_state_change": true,
-        "for": "0",
-        "forType": "num",
-        "forUnits": "minutes",
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "eventData"
-            },
-            {
-                "property": "topic",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "triggerId"
-            }
-        ],
-        "x": 190,
-        "y": 340,
-        "wires": [
-            [],
-            [
-                "c3ff21f5.f8eb58"
-            ]
-        ]
-    },
-    {
         "id": "c3ff21f5.f8eb58",
         "type": "delay",
         "z": "9b41e9d4.08d7b8",
@@ -280,109 +221,6 @@
             [
                 "288912f4.f00d06"
             ]
-        ]
-    },
-    {
-        "id": "288912f4.f00d06",
-        "type": "ha-wait-until",
-        "z": "9b41e9d4.08d7b8",
-        "name": "Wait until closed",
-        "server": "6dd794ce.66414c",
-        "version": 2,
-        "outputs": 2,
-        "entityId": "binary_sensor.entrance_contact",
-        "entityIdFilterType": "exact",
-        "property": "state",
-        "comparator": "is",
-        "value": "off",
-        "valueType": "str",
-        "timeout": "60",
-        "timeoutType": "num",
-        "timeoutUnits": "seconds",
-        "checkCurrentState": true,
-        "blockInputOverrides": true,
-        "outputProperties": [],
-        "x": 560,
-        "y": 340,
-        "wires": [
-            [],
-            []
-        ]
-    },
-    {
-        "id": "e88713fd.b028",
-        "type": "api-current-state",
-        "z": "e88800ac.be03b8",
-        "name": "Toria is home?",
-        "server": "6dd794ce.66414c",
-        "version": 3,
-        "outputs": 2,
-        "halt_if": "home",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "entity_id": "person.toria",
-        "state_type": "str",
-        "blockInputOverrides": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entity"
-            }
-        ],
-        "for": 0,
-        "forType": "num",
-        "forUnits": "minutes",
-        "x": 200,
-        "y": 80,
-        "wires": [
-            [],
-            []
-        ]
-    },
-    {
-        "id": "3481bf57.73cc08",
-        "type": "api-current-state",
-        "z": "e88800ac.be03b8",
-        "name": "Luke is home?",
-        "server": "6dd794ce.66414c",
-        "version": 3,
-        "outputs": 2,
-        "halt_if": "home",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "entity_id": "person.luke",
-        "state_type": "str",
-        "blockInputOverrides": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entity"
-            }
-        ],
-        "for": 0,
-        "forType": "num",
-        "forUnits": "minutes",
-        "x": 200,
-        "y": 140,
-        "wires": [
-            [],
-            []
         ]
     },
     {
@@ -558,64 +396,6 @@
             [
                 "85e123a3.d088d"
             ]
-        ]
-    },
-    {
-        "id": "df9ac5a2.42a368",
-        "type": "api-call-service",
-        "z": "8e58ee44.a4437",
-        "name": "Turn kitchen cabinet lights on",
-        "server": "6dd794ce.66414c",
-        "version": 5,
-        "debugenabled": false,
-        "domain": "switch",
-        "service": "turn_on",
-        "areaId": [],
-        "deviceId": [],
-        "entityId": [
-            "switch.kitchen_cabinet_light"
-        ],
-        "data": "",
-        "dataType": "json",
-        "mergeContext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "output_location": "",
-        "output_location_type": "none",
-        "x": 1270,
-        "y": 200,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "85e123a3.d088d",
-        "type": "api-call-service",
-        "z": "8e58ee44.a4437",
-        "name": "Turn kitchen cabinet lights off",
-        "server": "6dd794ce.66414c",
-        "version": 5,
-        "debugenabled": false,
-        "domain": "switch",
-        "service": "turn_off",
-        "areaId": [],
-        "deviceId": [],
-        "entityId": [
-            "switch.kitchen_cabinet_light"
-        ],
-        "data": "",
-        "dataType": "json",
-        "mergeContext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "output_location": "",
-        "output_location_type": "none",
-        "x": 1270,
-        "y": 240,
-        "wires": [
-            []
         ]
     },
     {
@@ -849,6 +629,226 @@
         "wires": []
     },
     {
+        "id": "df9ac5a2.42a368",
+        "type": "api-call-service",
+        "z": "8e58ee44.a4437",
+        "name": "Turn kitchen cabinet lights on",
+        "server": "6dd794ce.66414c",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "switch",
+        "service": "turn_on",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "switch.kitchen_cabinet_light"
+        ],
+        "data": "",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 1270,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "85e123a3.d088d",
+        "type": "api-call-service",
+        "z": "8e58ee44.a4437",
+        "name": "Turn kitchen cabinet lights off",
+        "server": "6dd794ce.66414c",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "switch",
+        "service": "turn_off",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "switch.kitchen_cabinet_light"
+        ],
+        "data": "",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 1270,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e88713fd.b028",
+        "type": "api-current-state",
+        "z": "8e58ee44.a4437",
+        "name": "Toria is home?",
+        "server": "6dd794ce.66414c",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "home",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "person.toria",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": 0,
+        "forType": "num",
+        "forUnits": "minutes",
+        "x": 200,
+        "y": 80,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "3481bf57.73cc08",
+        "type": "api-current-state",
+        "z": "8e58ee44.a4437",
+        "name": "Luke is home?",
+        "server": "6dd794ce.66414c",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "home",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "person.luke",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": 0,
+        "forType": "num",
+        "forUnits": "minutes",
+        "x": 200,
+        "y": 140,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "8c84c35d.2d8c08",
+        "type": "server-state-changed",
+        "z": "8e58ee44.a4437",
+        "name": "Entrance door open",
+        "server": "6dd794ce.66414c",
+        "version": 4,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "binary_sensor.entrance_contact",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 190,
+        "y": 340,
+        "wires": [
+            [],
+            [
+                "c3ff21f5.f8eb58"
+            ]
+        ]
+    },
+    {
+        "id": "288912f4.f00d06",
+        "type": "ha-wait-until",
+        "z": "8e58ee44.a4437",
+        "name": "Wait until closed",
+        "server": "6dd794ce.66414c",
+        "version": 2,
+        "outputs": 2,
+        "entityId": "binary_sensor.entrance_contact",
+        "entityIdFilterType": "exact",
+        "property": "state",
+        "comparator": "is",
+        "value": "off",
+        "valueType": "str",
+        "timeout": "60",
+        "timeoutType": "num",
+        "timeoutUnits": "seconds",
+        "checkCurrentState": true,
+        "blockInputOverrides": true,
+        "outputProperties": [],
+        "x": 560,
+        "y": 340,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
         "id": "9356eb6e.ee585",
         "type": "comment",
         "z": "b8e2ec17.d1eb2",
@@ -856,6 +856,22 @@
         "info": "",
         "x": 250,
         "y": 100,
+        "wires": []
+    },
+    {
+        "id": "2d9abb3cdf6b1bed",
+        "type": "debug",
+        "z": "b8e2ec17.d1eb2",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 380,
+        "y": 200,
         "wires": []
     },
     {
@@ -879,20 +895,33 @@
         ]
     },
     {
-        "id": "2d9abb3cdf6b1bed",
-        "type": "debug",
+        "id": "1bc41d96895c944b",
+        "type": "inject",
         "z": "b8e2ec17.d1eb2",
-        "name": "debug 1",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 380,
-        "y": 200,
-        "wires": []
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 160,
+        "wires": [
+            [
+                "3b4db96e6bf2acae"
+            ]
+        ]
     },
     {
         "id": "5cf08f91.c3fec",
@@ -1111,6 +1140,184 @@
         ]
     },
     {
+        "id": "5e8c6586.daf1dc",
+        "type": "switch",
+        "z": "3bad2ed8.06947a",
+        "name": "Check humidity level",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "lt",
+                "v": "50",
+                "vt": "num"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 440,
+        "y": 100,
+        "wires": [
+            [
+                "89df99a4.71905"
+            ],
+            [
+                "26fec69f.a06d8a"
+            ]
+        ]
+    },
+    {
+        "id": "f8d1eed0.f4e76",
+        "type": "switch",
+        "z": "3bad2ed8.06947a",
+        "name": "Check humidity level",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "lt",
+                "v": "50",
+                "vt": "num"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 440,
+        "y": 320,
+        "wires": [
+            [
+                "28fc0978.160256"
+            ],
+            [
+                "f7ed839c.e669"
+            ]
+        ]
+    },
+    {
+        "id": "26fec69f.a06d8a",
+        "type": "api-call-service",
+        "z": "3bad2ed8.06947a",
+        "name": "Turn on the fan",
+        "server": "6dd794ce.66414c",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "switch",
+        "service": "turn_on",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "switch.bathroom_fan"
+        ],
+        "data": "",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 740,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "89df99a4.71905",
+        "type": "api-call-service",
+        "z": "3bad2ed8.06947a",
+        "name": "Turn off the fan",
+        "server": "6dd794ce.66414c",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "switch",
+        "service": "turn_off",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "switch.bathroom_fan"
+        ],
+        "data": "",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 740,
+        "y": 60,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f7ed839c.e669",
+        "type": "api-call-service",
+        "z": "3bad2ed8.06947a",
+        "name": "Turn on the fan",
+        "server": "6dd794ce.66414c",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "switch",
+        "service": "turn_on",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "switch.en_suite_fan"
+        ],
+        "data": "",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 740,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "28fc0978.160256",
+        "type": "api-call-service",
+        "z": "3bad2ed8.06947a",
+        "name": "Turn off the fan",
+        "server": "6dd794ce.66414c",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "switch",
+        "service": "turn_off",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "switch.en_suite_fan"
+        ],
+        "data": "",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 740,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
         "id": "d705891.9dfa8f8",
         "type": "server-state-changed",
         "z": "3bad2ed8.06947a",
@@ -1174,95 +1381,6 @@
         ]
     },
     {
-        "id": "5e8c6586.daf1dc",
-        "type": "switch",
-        "z": "3bad2ed8.06947a",
-        "name": "Check humidity level",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "lt",
-                "v": "50",
-                "vt": "num"
-            },
-            {
-                "t": "else"
-            }
-        ],
-        "checkall": "false",
-        "repair": false,
-        "outputs": 2,
-        "x": 440,
-        "y": 100,
-        "wires": [
-            [
-                "89df99a4.71905"
-            ],
-            [
-                "26fec69f.a06d8a"
-            ]
-        ]
-    },
-    {
-        "id": "26fec69f.a06d8a",
-        "type": "api-call-service",
-        "z": "3bad2ed8.06947a",
-        "name": "Turn on the fan",
-        "server": "6dd794ce.66414c",
-        "version": 5,
-        "debugenabled": false,
-        "domain": "switch",
-        "service": "turn_on",
-        "areaId": [],
-        "deviceId": [],
-        "entityId": [
-            "switch.bathroom_fan"
-        ],
-        "data": "",
-        "dataType": "json",
-        "mergeContext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "output_location": "",
-        "output_location_type": "none",
-        "x": 740,
-        "y": 140,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "89df99a4.71905",
-        "type": "api-call-service",
-        "z": "3bad2ed8.06947a",
-        "name": "Turn off the fan",
-        "server": "6dd794ce.66414c",
-        "version": 5,
-        "debugenabled": false,
-        "domain": "switch",
-        "service": "turn_off",
-        "areaId": [],
-        "deviceId": [],
-        "entityId": [
-            "switch.bathroom_fan"
-        ],
-        "data": "",
-        "dataType": "json",
-        "mergeContext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "output_location": "",
-        "output_location_type": "none",
-        "x": 740,
-        "y": 60,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "3430330d.5053ec",
         "type": "server-state-changed",
         "z": "3bad2ed8.06947a",
@@ -1307,95 +1425,6 @@
             [
                 "f8d1eed0.f4e76"
             ]
-        ]
-    },
-    {
-        "id": "f8d1eed0.f4e76",
-        "type": "switch",
-        "z": "3bad2ed8.06947a",
-        "name": "Check humidity level",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "lt",
-                "v": "50",
-                "vt": "num"
-            },
-            {
-                "t": "else"
-            }
-        ],
-        "checkall": "false",
-        "repair": false,
-        "outputs": 2,
-        "x": 440,
-        "y": 320,
-        "wires": [
-            [
-                "28fc0978.160256"
-            ],
-            [
-                "f7ed839c.e669"
-            ]
-        ]
-    },
-    {
-        "id": "f7ed839c.e669",
-        "type": "api-call-service",
-        "z": "3bad2ed8.06947a",
-        "name": "Turn on the fan",
-        "server": "6dd794ce.66414c",
-        "version": 5,
-        "debugenabled": false,
-        "domain": "switch",
-        "service": "turn_on",
-        "areaId": [],
-        "deviceId": [],
-        "entityId": [
-            "switch.en_suite_fan"
-        ],
-        "data": "",
-        "dataType": "json",
-        "mergeContext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "output_location": "",
-        "output_location_type": "none",
-        "x": 740,
-        "y": 360,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "28fc0978.160256",
-        "type": "api-call-service",
-        "z": "3bad2ed8.06947a",
-        "name": "Turn off the fan",
-        "server": "6dd794ce.66414c",
-        "version": 5,
-        "debugenabled": false,
-        "domain": "switch",
-        "service": "turn_off",
-        "areaId": [],
-        "deviceId": [],
-        "entityId": [
-            "switch.en_suite_fan"
-        ],
-        "data": "",
-        "dataType": "json",
-        "mergeContext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "output_location": "",
-        "output_location_type": "none",
-        "x": 740,
-        "y": 280,
-        "wires": [
-            []
         ]
     },
     {
