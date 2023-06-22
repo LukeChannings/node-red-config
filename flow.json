@@ -1818,39 +1818,97 @@
         "x": 240,
         "y": 400,
         "wires": [
-            [
-                "048b9e543465083f"
-            ],
+            [],
             []
         ]
     },
     {
-        "id": "048b9e543465083f",
-        "type": "api-call-service",
+        "id": "ce026ba5c29fd428",
+        "type": "api-current-state",
         "z": "ece5e39f.8a0c58",
-        "name": "Start Kreacher",
+        "name": "What's Kreacher doing?",
         "server": "6dd794ce.66414c",
-        "version": 5,
-        "debugenabled": true,
-        "domain": "vacuum",
-        "service": "turn_on",
-        "areaId": [],
-        "deviceId": [
-            "abfc26510cd7ac02bc1d04b11fb42390"
+        "version": 3,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "vacuum.kreacher",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
         ],
-        "entityId": [
-            "vacuum.kreacher"
-        ],
-        "data": "",
-        "dataType": "jsonata",
-        "mergeContext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "x": 540,
-        "y": 400,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 550,
+        "y": 300,
         "wires": [
-            []
+            [
+                "3b3f3da402d3fa43"
+            ]
         ]
+    },
+    {
+        "id": "013a2de6ad64f812",
+        "type": "inject",
+        "z": "ece5e39f.8a0c58",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 320,
+        "y": 300,
+        "wires": [
+            [
+                "ce026ba5c29fd428"
+            ]
+        ]
+    },
+    {
+        "id": "3b3f3da402d3fa43",
+        "type": "debug",
+        "z": "ece5e39f.8a0c58",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 780,
+        "y": 300,
+        "wires": []
     }
 ]
