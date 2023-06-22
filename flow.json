@@ -682,7 +682,7 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 380,
+        "x": 660,
         "y": 200,
         "wires": []
     },
@@ -742,13 +742,14 @@
         "z": "b8e2ec17.d1eb2",
         "name": "Terrence",
         "bot": "7ddcde404cad3973",
-        "haserroroutput": true,
-        "outputs": 2,
+        "haserroroutput": false,
+        "outputs": 1,
         "x": 400,
         "y": 260,
         "wires": [
-            [],
-            []
+            [
+                "2d9abb3cdf6b1bed"
+            ]
         ]
     },
     {
